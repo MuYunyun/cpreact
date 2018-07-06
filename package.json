@@ -1,0 +1,34 @@
+{
+  "name": "cpreact",
+  "version": "0.0.1",
+  "description": "to research the source code of preact",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel ./index.html --open -p 1234 --no-cache"
+  },
+  "keywords": [
+    "cpreact",
+    "preact",
+    "react",
+    "virtual dom",
+    "vdom",
+    "components",
+    "virtual",
+    "dom"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuYunyun/cpreact.git"
+  },
+  "author": "muyunyun(muyy95@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MuYunyun/cpreact/issues"
+  },
+  "homepage": "https://github.com/MuYunyun/cpreact#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-plugin-transform-react-jsx": "^6.24.1"
+  }
+}
