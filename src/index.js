@@ -1,4 +1,5 @@
 import { humpToStandard } from './util'
+import * as _ from 'diana'
 
 const React = {
   createElement
@@ -41,10 +42,21 @@ const ReactDOM = {
   //   attributes: {className: "title"}
   //   children: ["hello", t] // t 和外层对象相同
   //   key: undefined
-  //   nodeName: "div"
+  //   nodeName: "div"        // 如果是自定义组件则变为 nodeName: ƒ A()
   // }
  */
 function render(vdom, container) {
+  if (_.isFunction(vdom.nodeName)) {
+    let component, returnVdom
+    if (vdom.nodeName.prototype.render) {
+      component = new vdom.nodeName()
+      returnVdom = component.render()
+    } else {
+      returnVdom = vdom.nodeName()
+    }
+    render(returnVdom, container)
+    return
+  }
   if (typeof(vdom) === 'string') {
     container.innerText = vdom
     return
@@ -75,6 +87,7 @@ function setAttribute(dom, attr, value) {
     let standardCss
     for (let klass in value) {
       standardCss = humpToStandard(klass)
+      value[klass] = _.isNumber(+value[klass]) ? value[klass] + 'px' : value[klass] // style={{ className: '20' || '20px' }}>
       styleStr += `${standardCss}: ${value[klass]};`
     }
     dom.setAttribute(attr, styleStr)
@@ -83,13 +96,9 @@ function setAttribute(dom, attr, value) {
   }
 }
 
-const element = (
-  <div style={{ color: 'green', fontSize: '25px' }}>
-    hello
-  </div>
-)
+const A = () => <div>I'm componentsA</div>
 
 ReactDOM.render(
-  element, // 上文的 element，即虚拟 dom
+  <A />,
   document.getElementById('root')
 )
