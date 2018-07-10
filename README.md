@@ -1,15 +1,32 @@
 ### cpreact
 
-看源码一个痛处是会陷进理不顺主干的困局中，本系列文章在实现一个 (x)react 的同时理顺 React 框架的主干内容(JSX/虚拟DOM/...)
+cpreact === copy react
+
+next generation react, who know ?
 
 ### documents
 
-[从 0 到 1 实现 React 系列](https://github.com/MuYunyun/blog#%E4%BB%8E-0-%E5%88%B0-1-%E5%AE%9E%E7%8E%B0-react)
+本系列文章帮助大家捋(食)顺(用) React 框架的主干内容(JSX/虚拟DOM/组件/生命周期/...)
+
+未完待续...
+
+- [x] [前置准备](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/0.前置准备.md)
+- [x] [JSX 和 Virtual DOM](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/1.JSX%20%E5%92%8C%20%E8%99%9A%E6%8B%9F%20DOM.md)
+- [ ] [组件](https://github.com/MuYunyun/blog/blob/master/BasicSkill/%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0React/2.%E7%BB%84%E4%BB%B6.md)
+- [ ] 生命周期
 
 ### Usage
+
+开发阶段
 
 ```babel
 npm install -g parcel-bundler
 
 npm run start
+```
+
+download:
+
+```
+npm install (x)react
 ```
