@@ -1,8 +1,8 @@
 {
   "name": "cpreact",
   "version": "0.0.1",
-  "description": "to research the source code of preact",
-  "main": "index.js",
+  "description": "a lightweigth react",
+  "main": "dist/src.9985fc55.js",
   "scripts": {
     "start": "parcel ./index.html --open -p 1234 --no-cache"
   },

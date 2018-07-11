@@ -2,7 +2,7 @@ import * as _ from 'diana'
 import { humpToStandard } from './util'
 import createElement from './createElement'
 import Component from './component'
-import render from './render'
+import { render } from './render'
 
 const React = {
   createElement,
@@ -17,8 +17,8 @@ const ReactDOM = {
 }
 
 class A extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       count: 1
     }
@@ -33,14 +33,14 @@ class A extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.click.bind(this)}>Button</button>
-        <div>{this.state.count}</div>
+        <button onClick={this.click.bind(this)}>Click Me!</button>
+        <div>{this.props.name}:{this.state.count}</div>
       </div>
     )
   }
 }
 
 ReactDOM.render(
-  <A />,
+  <A name="count" />,
   document.getElementById('root')
 )

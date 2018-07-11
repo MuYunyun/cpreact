@@ -12,17 +12,24 @@ import * as _ from 'diana'
   // }
  */
 function render(vdom, container) {
+  let component
   if (_.isFunction(vdom.nodeName)) {
-    let component, returnVdom
     if (vdom.nodeName.prototype.render) {
       component = new vdom.nodeName(vdom.attributes)
-      returnVdom = component.render()
     } else {
-      returnVdom = vdom.nodeName(vdom.attributes) // 处理无状态组件：const A = (props) => <div>I'm {props.name}</div>
+      // returnVdom = vdom.nodeName(vdom.attributes) // 处理无状态组件：const A = (props) => <div>I'm {props.name}</div>
     }
-    render(returnVdom, container)
-    return
   }
+  component ? _render(component, container) : _render(vdom, container)
+}
+
+/**
+ * render 函数中抽离出 _render, 从而能在 setState 函数中中复用
+ * @param {*} component 组件或者 vdom
+ * @param {*} container 需要插入的位置
+ */
+function _render(component, container) {
+  const vdom = component.render ? component.render() : component
   if (_.isString(vdom) || _.isNumber(vdom)) {
     container.innerText = container.innerText + vdom // fix <div>I'm {this.props.name}</div>
     return
@@ -32,10 +39,14 @@ function render(vdom, container) {
     setAttribute(dom, attr, vdom.attributes[attr])
   }
   vdom.children.forEach(vdomChild => render(vdomChild, dom))
+  if (component.container) { // 调用 setState 方法时是进入这段逻辑；知识点: new 出来的同一个实例
+    component.container.innerHTML = null
+    component.container.appendChild(dom)
+    return
+  }
+  component.container = container
   container.appendChild(dom)
 }
-
-// 明天的目标：render 函数中抽离出 container，以便 setState 函数中中复用
 
 /**
  * 给节点设置属性
@@ -64,4 +75,4 @@ function setAttribute(dom, attr, value) {
   }
 }
 
-export default render
+export { render, _render }
