@@ -16,6 +16,7 @@ const ReactDOM = {
   }
 }
 
+
 class A extends Component {
   constructor(props) {
     super(props)

@@ -17,7 +17,7 @@ function render(vdom, container) {
     if (vdom.nodeName.prototype.render) {
       component = new vdom.nodeName(vdom.attributes)
     } else {
-      // returnVdom = vdom.nodeName(vdom.attributes) // 处理无状态组件：const A = (props) => <div>I'm {props.name}</div>
+      component = vdom.nodeName(vdom.attributes) // 处理无状态组件：const A = (props) => <div>I'm {props.name}</div>
     }
   }
   component ? _render(component, container) : _render(vdom, container)
