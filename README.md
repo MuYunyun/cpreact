@@ -12,7 +12,7 @@ next generation react, who know ?
 
 - [x] [前置准备](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/0.前置准备.md)
 - [x] [JSX 和 Virtual DOM](https://github.com/MuYunyun/blog/issues/24)
-- [ ] [组件和 state|props](https://github.com/MuYunyun/blog/issues/25)
+- [x] [组件和 state|props](https://github.com/MuYunyun/blog/issues/25)
 - [ ] 生命周期
 
 ### Usage

@@ -1,4 +1,4 @@
-import { _render } from './render'
+import { renderComponent } from './render'
 
 function Component(props) {
   this.props = props
@@ -8,7 +8,7 @@ function Component(props) {
 // 更新组件状态并重新渲染
 Component.prototype.setState = function(updateObj) {
   this.state = Object.assign({}, this.state, updateObj)
-  _render(this) // 重新渲染
+  renderComponent(this) // 重新渲染
 }
 
 export default Component
