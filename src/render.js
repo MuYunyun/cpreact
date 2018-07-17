@@ -12,7 +12,7 @@ import * as _ from 'diana'
   // }
  */
 function render(vdom, container) {
-  const dom = _render(vdom)
+  const dom = vdomToDom(vdom)
   container.appendChild(dom)
 }
 
@@ -36,6 +36,7 @@ function createComponent(vdom) {
  * 更改属性，componentWillMount 和 componentWillReceiveProps 方法
  */
 function setProps(component) {
+  // 此处加上 diff 逻辑，完美！
   if (component && component.componentWillMount) {
     component.componentWillMount()
   } else if (component.base && component.componentWillReceiveProps) {
@@ -44,11 +45,10 @@ function setProps(component) {
 }
 
 /**
- * 渲染自定义组件逻辑
+ * 自定义组件渲染逻辑
  * @param {*} component
  */
 function renderComponent(component) {
-  const rendered = component.render()
   if (component.base && component.shouldComponentUpdate) {
     const bool = component.shouldComponentUpdate(component.props, component.state)
     if (!bool && bool !== undefined) {
@@ -59,7 +59,8 @@ function renderComponent(component) {
     component.componentWillUpdate()
   }
 
-  const base = _render(rendered)
+  const rendered = component.render()
+  const base = vdomToDom(rendered)
 
   if (component.base && component.componentDidUpdate) {
     component.componentDidUpdate()
@@ -75,12 +76,11 @@ function renderComponent(component) {
 }
 
 /**
- * render 函数中抽离出 _render, 从而能在 setState 函数中中复用
+ * render 函数中抽离出 vdomToDom, 从而能在 setState 函数中复用
  * @param {*} vdom vdom
- * @param {*} container 需要插入的位置
  * return dom
  */
-function _render(vdom) {
+function vdomToDom(vdom) {
   if (_.isFunction(vdom.nodeName)) { // 为了更加方便地书写生命周期逻辑，将自定义组件逻辑和一般 html 标签的逻辑分离开
     const component = createComponent(vdom)
     setProps(component)
@@ -126,4 +126,4 @@ function setAttribute(dom, attr, value) {
   }
 }
 
-export { render, _render, renderComponent }
+export { render, vdomToDom, renderComponent }
