@@ -1,4 +1,5 @@
 import * as _ from 'diana'
+// import { diff } from './diff'
 
 /**
  * 将虚拟 DOM 转化为真实 DOM 后插入指定位置
@@ -60,7 +61,16 @@ function renderComponent(component) {
   }
 
   const rendered = component.render()
-  const base = vdomToDom(rendered)
+
+  const base = vdomToDom(rendered) // 子组件渲染完父组件才渲染完
+
+  if (component.base) {
+    const dom = diff(component.oldVdom, rendered)
+
+    // if (component.base.parentNode) { // setState
+    //   component.base.parentNode.replaceChild(base, component.base)
+    // }
+  }
 
   if (component.base && component.componentDidUpdate) {
     component.componentDidUpdate()
@@ -68,17 +78,40 @@ function renderComponent(component) {
     component.componentDidMount()
   }
 
-  if (component.base && component.base.parentNode) { // setState
-    component.base.parentNode.replaceChild(base, component.base)
-  }
+  component.base = base      // 标志符
+  component.oldVdom = rendered  // 标志符
+}
 
-  component.base = base  // 标志符
+/**
+ * 比较新老 vdom：
+ * 策略1：我们只进行同层级的节点比较，一旦定位到层级不同的节点，则返回该节点之后的 dom
+ * 策略2：加上 key
+ * @param {*} oldVdom
+ * @param {*} newVdom
+ */
+function diff(oldVdom, newVdom) {
+  if (oldVdom.nodeName !== newVdom.nodeName) {
+    return // 后续再补充这种情况
+  } else {
+    newVdom.children.forEach((value, index) => {
+      if (oldVdom.children[index]) {
+        if (value !== oldVdom.children[index]) {
+          if (_.isString(value) || _.isNumber(value)) {
+            // return vdomToDom(value) // 如何找到 parent 然后替代元素
+          }
+        }
+        diff(oldVdom.children[index], value)
+      } else { // 如果 old virtual dom 没有的话
+        return // 后续再补充这种情况
+      }
+    })
+  }
 }
 
 /**
  * render 函数中抽离出 vdomToDom, 从而能在 setState 函数中复用
  * @param {*} vdom vdom
- * return dom
+ * @return dom
  */
 function vdomToDom(vdom) {
   if (_.isFunction(vdom.nodeName)) { // 为了更加方便地书写生命周期逻辑，将自定义组件逻辑和一般 html 标签的逻辑分离开
@@ -99,12 +132,7 @@ function vdomToDom(vdom) {
   return dom
 }
 
-/**
- * 给节点设置属性
- * @param {*} dom   操作元素
- * @param {*} attr  操作元素属性
- * @param {*} value 操作元素值
- */
+
 function setAttribute(dom, attr, value) {
   if (attr === 'className') {
     attr = 'class'
@@ -126,4 +154,4 @@ function setAttribute(dom, attr, value) {
   }
 }
 
-export { render, vdomToDom, renderComponent }
+export { render, renderComponent }
