@@ -116,9 +116,9 @@ class B extends Component {
   render() {
     console.log('render')
     return (
-      <div>
-        <button onClick={this.click.bind(this)}>Click Me!</button>
-        <div>{this.state.count}</div>
+      <div key={2}>
+        <button key={0} onClick={this.click.bind(this)}>Click Me!</button>
+        <div key={1}>{this.state.count}</div>
       </div>
     )
   }

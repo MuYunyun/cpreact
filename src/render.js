@@ -62,15 +62,16 @@ function renderComponent(component) {
 
   const rendered = component.render()
 
-  const base = vdomToDom(rendered) // 子组件渲染完父组件才渲染完
-
+  let base
   if (component.base) {
-    const dom = diff(component.oldVdom, rendered)
-
-    // if (component.base.parentNode) { // setState
-    //   component.base.parentNode.replaceChild(base, component.base)
-    // }
+    base = diff(component.base, rendered)
+  } else {
+    base = vdomToDom(rendered) // 子组件渲染完父组件才渲染完
   }
+
+  // if (component.base.parentNode) { // setState
+  //   component.base.parentNode.replaceChild(base, component.base)
+  // }
 
   if (component.base && component.componentDidUpdate) {
     component.componentDidUpdate()
@@ -79,33 +80,85 @@ function renderComponent(component) {
   }
 
   component.base = base      // 标志符
-  component.oldVdom = rendered  // 标志符
+  // component.oldVdom = rendered  // 标志符
 }
 
 /**
  * 比较新老 vdom：
- * 策略1：我们只进行同层级的节点比较，一旦定位到层级不同的节点，则返回该节点之后的 dom
+ * 策略1：只进行同层级的节点比较，一旦定位到层级不同的节点
  * 策略2：加上 key
- * @param {*} oldVdom
+ * @param {*} oldDom
  * @param {*} newVdom
  */
-function diff(oldVdom, newVdom) {
-  if (oldVdom.nodeName !== newVdom.nodeName) {
-    return // 后续再补充这种情况
-  } else {
-    newVdom.children.forEach((value, index) => {
-      if (oldVdom.children[index]) {
-        if (value !== oldVdom.children[index]) {
-          if (_.isString(value) || _.isNumber(value)) {
-            // return vdomToDom(value) // 如何找到 parent 然后替代元素
-          }
-        }
-        diff(oldVdom.children[index], value)
-      } else { // 如果 old virtual dom 没有的话
-        return // 后续再补充这种情况
+function diff(oldDom, newVdom) {
+  let dom = oldDom
+  // 对比文本 dom 节点
+  if (_.isString(newVdom) || _.isNumber(newVdom)) { // 如果是字符串
+    if (oldDom && oldDom.nodeType === 3) { // 如果老节点是字符串
+      if (oldDom.textContent !== newVdom) {
+        oldDom.textContent = newVdom
       }
-    })
+    } else {
+      dom = document.createTextNode(newVdom)
+      if (oldDom && oldDom.parentNode) {
+        oldDom.parentNode.replaceChild(dom, oldDom)
+      }
+    }
+    return dom
   }
+  if (_.isFunction(newVdom.nodeName)) { // 如果是自定义组件
+    return
+  }
+  // 对比非文本 dom 节点
+  if (oldDom.nodeName.toLowerCase() !== newVdom.nodeName) {
+    const newDom = document.createElement(newVdom.nodeName);
+    [...oldDom.childNodes].map(newDom.appendChild)
+    if (oldDom && oldDom.parentNode) {
+      oldDom.parentNode.replaceChild(oldDom, newDom)
+    }
+  }
+
+  // 对比属性
+  // const oldObj = {}
+  // for (let i = 0; i < oldDom.attributes.length; i++) { // NamedNodeMap 特殊形式
+  //   oldObj[oldDom.attributes[i].name] = oldDom.attributes[i].value
+  // }
+
+  // for (const attr in newVdom.attributes) {
+  //   if (!oldObj[attr]) {
+  //     setAttribute(oldDom, attr, undefined)
+  //   } else if (oldObj[attr] !== newVdom.attributes[attr].toString()) {
+  //     setAttribute(oldDom, attr, newVdom.attributes[attr])
+  //   }
+  // }
+
+  // 对比子节点
+  if (newVdom.children.length > 0) {
+    const keyed = {}
+    const oldChildNodes = oldDom.childNodes
+    for (let i = 0; i < oldChildNodes.length; i++) {
+      keyed[oldChildNodes[i].key] = oldChildNodes[i]
+    }
+
+    const newChildNodes = newVdom.children
+    let child
+    for (let i = 0; i < newChildNodes.length; i++) {
+      if (keyed[newChildNodes[i].key]) {
+        child = keyed[newChildNodes[i].key]
+        keyed[newChildNodes[i].key] = undefined
+      }
+      child = diff(child, newChildNodes[i])
+      // 更新
+      const f = oldChildNodes[i]
+      if (child && child !== oldDom) {
+        if (!f) {
+          oldDom.appendChild(child)
+        }
+      }
+    }
+  }
+
+  return dom
 }
 
 /**
@@ -132,7 +185,12 @@ function vdomToDom(vdom) {
   return dom
 }
 
-
+/**
+ * 给 dom 赋上相应属性
+ * @param {*} dom
+ * @param {*} attr
+ * @param {*} value
+ */
 function setAttribute(dom, attr, value) {
   if (attr === 'className') {
     attr = 'class'
@@ -149,6 +207,8 @@ function setAttribute(dom, attr, value) {
       styleStr += `${standardCss}: ${value[klass]};`
     }
     dom.setAttribute(attr, styleStr)
+  } else if (attr === 'key') {
+    dom[attr] = value
   } else {                          // 其它属性
     dom.setAttribute(attr, value)
   }
