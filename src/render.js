@@ -80,7 +80,6 @@ function renderComponent(component) {
   }
 
   component.base = base      // 标志符
-  // component.oldVdom = rendered  // 标志符
 }
 
 /**
@@ -135,9 +134,14 @@ function diff(oldDom, newVdom) {
   // 对比子节点
   if (newVdom.children.length > 0) {
     const keyed = {}
+    const children = []
     const oldChildNodes = oldDom.childNodes
     for (let i = 0; i < oldChildNodes.length; i++) {
-      keyed[oldChildNodes[i].key] = oldChildNodes[i]
+      if (oldChildNodes[i].key) {
+        keyed[oldChildNodes[i].key] = oldChildNodes[i]
+      } else { // 如果不存在 key，则优先找到节点类型相同的元素
+        children.push(oldChildNodes[i])
+      }
     }
 
     const newChildNodes = newVdom.children
@@ -146,19 +150,44 @@ function diff(oldDom, newVdom) {
       if (keyed[newChildNodes[i].key]) {
         child = keyed[newChildNodes[i].key]
         keyed[newChildNodes[i].key] = undefined
+      } else { // 对应上面不存在 key 的情形
+        for (let j = 0; j < children.length; j++) {
+          if (isSameNodeType(children[i], newChildNodes[i])) {
+            child = children[i]
+            children[i] = undefined
+            break
+          }
+        }
       }
       child = diff(child, newChildNodes[i])
       // 更新
-      const f = oldChildNodes[i]
-      if (child && child !== oldDom) {
-        if (!f) {
-          oldDom.appendChild(child)
-        }
-      }
+      // const f = oldChildNodes[i]
+      // if (child && child !== oldDom) {
+      //   if (!f) {
+      //     oldDom.appendChild(child)
+      //   }
+      // }
     }
   }
 
   return dom
+}
+
+/**
+ * 判断 dom 与 vdom 的节点类型是否相同
+ * @param {*} dom
+ * @param {*} vdom
+ */
+function isSameNodeType(dom, vdom) {
+  if ((_.isNumber(vdom) || _.isString(vdom))) { // 判断是否为文本类型
+    return dom.nodeType === 3
+  }
+  if (dom.nodeName.toLowerCase() === vdom.nodeName) { // 判断非文本类型的 dom
+    return true
+  }
+  if (_.isFunction(vdom.nodeName)) { // 判断组件类型是否相同，后续再看
+  }
+  return false
 }
 
 /**

@@ -4,7 +4,7 @@
   "description": "a lightweigth react",
   "main": "dist/src.9985fc55.js",
   "scripts": {
-    "start": "parcel ./index.html --open -p 1234 --no-cache"
+    "start": "parcel ./test/index.html --open -p 1234 --no-cache"
   },
   "keywords": [
     "cpreact",
