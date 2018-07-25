@@ -1,5 +1,0 @@
-function diff () {
-
-}
-
-export { diff }
