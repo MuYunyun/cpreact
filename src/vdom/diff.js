@@ -1,5 +1,5 @@
 import * as _ from 'diana'
-import { vdomToDom, setAttribute } from '../render'
+import { vdomToDom, setAttribute, setProps, renderComponent } from '../render'
 
 /**
  * 比较新老 vdom：
@@ -9,7 +9,11 @@ import { vdomToDom, setAttribute } from '../render'
  * @param {*} newVdom
  */
 function diff(oldDom, newVdom) {
-  if (_.isString(newVdom) || _.isNumber(newVdom)) { // 如果是文本
+  if (_.isNumber(newVdom)) {
+    newVdom = newVdom.toString()
+  }
+
+  if (_.isString(newVdom)) { // 如果是文本
     return diffTextDom(oldDom, newVdom)
   }
 
@@ -56,10 +60,13 @@ function diffTextDom(oldDom, newVdom) {
  * @param {*} newVdom
  */
 function diffComponent(oldDom, newVdom) {
-  if (oldDom._component && (oldDom._component.constructor !== newVdom.nodeName)) {
-    const newDom = vdomToDom(newVdom.nodeName)
+  if (oldDom._component && (oldDom._component.constructor !== newVdom.nodeName)) { // 如果组件不同直接替换
+    const newDom = vdomToDom(newVdom)
     oldDom._component.parentNode.insertBefore(newDom, oldDom._component)
     oldDom._component.parentNode.removeChild(oldDom._component)
+  } else { // 如果组件名相同则继续比较
+    setProps(oldDom._component, newVdom.attributes) // 将新的 attributes 值赋值给旧的
+    renderComponent(oldDom._component)
   }
 }
 

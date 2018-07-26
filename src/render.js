@@ -36,12 +36,16 @@ function createComponent(vdom) {
 /**
  * 更改属性，componentWillMount 和 componentWillReceiveProps 方法
  */
-function setProps(component) {
+function setProps(component, attributes) {
   // 此处加上 diff 逻辑，完美！
   if (component && component.componentWillMount) {
     component.componentWillMount()
   } else if (component.base && component.componentWillReceiveProps) {
     component.componentWillReceiveProps(component.props)
+  }
+
+  if (attributes) {
+    component.props = attributes
   }
 }
 
@@ -64,17 +68,13 @@ function renderComponent(component) {
 
   let base
   if (component.base) {
-    // base = diff(component.base, rendered)
+    base = diff(component.base, rendered)
   } else {
     base = vdomToDom(rendered) // 子组件渲染完父组件才渲染完
   }
 
-  // if (component.base.parentNode) { // setState
-  //   component.base.parentNode.replaceChild(base, component.base)
-  // }
-
-  if (component.base && component.componentDidUpdate) {
-    component.componentDidUpdate()
+  if (component.base) {
+    component.componentDidUpdate ? component.componentDidUpdate() : void 0
   } else if (component && component.componentDidMount) {
     component.componentDidMount()
   }
@@ -136,4 +136,4 @@ function setAttribute(dom, attr, value) {
   }
 }
 
-export { render, renderComponent, vdomToDom, setAttribute }
+export { render, renderComponent, vdomToDom, setAttribute, setProps }
