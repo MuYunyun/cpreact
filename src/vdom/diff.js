@@ -1,4 +1,5 @@
 import * as _ from 'diana'
+import { vdomToDom, setAttribute } from '../render'
 
 /**
  * 比较新老 vdom：
@@ -13,7 +14,7 @@ function diff(oldDom, newVdom) {
   }
 
   if (_.isFunction(newVdom.nodeName)) { // 如果是自定义组件
-    diffComponent(oldDom, newVdom)
+    return diffComponent(oldDom, newVdom)
   }
 
   if (oldDom.nodeName.toLowerCase() !== newVdom.nodeName) {
@@ -50,12 +51,16 @@ function diffTextDom(oldDom, newVdom) {
 }
 
 /**
- * 对比不同函数
+ * 对比不同自定义组件
  * @param {*} oldDom
  * @param {*} newVdom
  */
 function diffComponent(oldDom, newVdom) {
-
+  if (oldDom._component && (oldDom._component.constructor !== newVdom.nodeName)) {
+    const newDom = vdomToDom(newVdom.nodeName)
+    oldDom._component.parentNode.insertBefore(newDom, oldDom._component)
+    oldDom._component.parentNode.removeChild(oldDom._component)
+  }
 }
 
 /**
@@ -77,18 +82,18 @@ function diffNotTextDom(oldDom, newVdom) {
  * @param {*} newVdom
  */
 function diffAttribute(oldDom, newVdom) {
-  // const oldObj = {}
-  // for (let i = 0; i < oldDom.attributes.length; i++) { // NamedNodeMap 特殊形式
-  //   oldObj[oldDom.attributes[i].name] = oldDom.attributes[i].value
-  // }
+  const oldObj = {}
+  for (let i = 0; i < oldDom.attributes.length; i++) { // NamedNodeMap 特殊形式
+    oldObj[oldDom.attributes[i].name] = oldDom.attributes[i].value
+  }
 
-  // for (const attr in newVdom.attributes) {
-  //   if (!oldObj[attr]) {
-  //     setAttribute(oldDom, attr, undefined)
-  //   } else if (oldObj[attr] !== newVdom.attributes[attr].toString()) {
-  //     setAttribute(oldDom, attr, newVdom.attributes[attr])
-  //   }
-  // }
+  for (const attr in newVdom.attributes) {
+    if (!oldObj[attr]) {
+      setAttribute(oldDom, attr, undefined)
+    } else if (oldObj[attr] !== newVdom.attributes[attr].toString()) {
+      setAttribute(oldDom, attr, newVdom.attributes[attr])
+    }
+  }
 }
 
 /**
@@ -147,7 +152,8 @@ function isSameNodeType(dom, vdom) {
   if (dom.nodeName.toLowerCase() === vdom.nodeName) { // 判断非文本类型的 dom
     return true
   }
-  if (_.isFunction(vdom.nodeName)) { // 判断组件类型是否相同，后续再看
+  if (_.isFunction(vdom.nodeName)) { // 判断组件类型是否相同
+    return dom._component.constructor === vdom.nodeName
   }
   return false
 }

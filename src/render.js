@@ -64,7 +64,7 @@ function renderComponent(component) {
 
   let base
   if (component.base) {
-    base = diff(component.base, rendered)
+    // base = diff(component.base, rendered)
   } else {
     base = vdomToDom(rendered) // 子组件渲染完父组件才渲染完
   }
@@ -80,6 +80,7 @@ function renderComponent(component) {
   }
 
   component.base = base      // 标志符
+  base._component = component
 }
 
 /**
@@ -135,4 +136,4 @@ function setAttribute(dom, attr, value) {
   }
 }
 
-export { render, renderComponent }
+export { render, renderComponent, vdomToDom, setAttribute }
