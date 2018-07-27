@@ -1,5 +1,6 @@
 import * as _ from 'diana'
 import { diff } from './vdom/diff'
+import { humpToStandard } from './util'
 
 /**
  * 将虚拟 DOM 转化为真实 DOM 后插入指定位置
@@ -37,15 +38,14 @@ function createComponent(vdom) {
  * 更改属性，componentWillMount 和 componentWillReceiveProps 方法
  */
 function setProps(component, attributes) {
-  // 此处加上 diff 逻辑，完美！
-  if (component && component.componentWillMount) {
-    component.componentWillMount()
-  } else if (component.base && component.componentWillReceiveProps) {
-    component.componentWillReceiveProps(component.props)
-  }
-
   if (attributes) {
     component.props = attributes
+  }
+
+  if (component && component.base && component.componentWillReceiveProps) {
+    component.componentWillReceiveProps(component.props)
+  } else if (component && component.componentWillMount) {
+    component.componentWillMount()
   }
 }
 

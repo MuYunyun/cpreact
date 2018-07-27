@@ -1,5 +1,4 @@
 import * as _ from 'diana'
-import { humpToStandard } from './util'
 import createElement from './createElement'
 import Component from './component'
 import { render } from './render'

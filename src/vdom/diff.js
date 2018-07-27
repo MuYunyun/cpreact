@@ -2,11 +2,9 @@ import * as _ from 'diana'
 import { vdomToDom, setAttribute, setProps, renderComponent } from '../render'
 
 /**
- * 比较新老 vdom：
- * 策略1：只进行同层级的节点比较，一旦定位到层级不同的节点
- * 策略2：加上 key
- * @param {*} oldDom
- * @param {*} newVdom
+ * 比较旧的 dom 节点和新的 virtual dom 节点：
+ * @param {*} oldDom  旧的 dom 节点
+ * @param {*} newVdom 新的 virtual dom 节点
  */
 function diff(oldDom, newVdom) {
   if (_.isNumber(newVdom)) {
@@ -35,13 +33,13 @@ function diff(oldDom, newVdom) {
 }
 
 /**
- * 对比文本 dom 节点
+ * 对比文本节点
  * @param {*} oldDom
  * @param {*} newVdom
  */
 function diffTextDom(oldDom, newVdom) {
   let dom = oldDom
-  if (oldDom && oldDom.nodeType === 3) { // 如果老节点是字符串
+  if (oldDom && oldDom.nodeType === 3) { // 如果老节点是文本节点
     if (oldDom.textContent !== newVdom) {
       oldDom.textContent = newVdom
     }
@@ -71,7 +69,7 @@ function diffComponent(oldDom, newVdom) {
 }
 
 /**
- * 对比非文本 DOM 节点
+ * 对比非文本节点
  * @param {*} oldDom
  * @param {*} newVdom
  */
@@ -95,10 +93,14 @@ function diffAttribute(oldDom, newVdom) {
   }
 
   for (const attr in newVdom.attributes) {
-    if (!oldObj[attr]) {
-      setAttribute(oldDom, attr, undefined)
-    } else if (oldObj[attr] !== newVdom.attributes[attr].toString()) {
+    if (oldObj[attr] && oldObj[attr] !== newVdom.attributes[attr].toString()) {
       setAttribute(oldDom, attr, newVdom.attributes[attr])
+    }
+  }
+
+  for (const oldAttr in oldObj) { // 如果旧 dom 节点中有，新 dom 节点中没有
+    if (!newVdom.attributes[oldAttr]) {
+      setAttribute(oldDom, oldAttr, undefined)
     }
   }
 }

@@ -2,11 +2,7 @@ import { React, ReactDOM } from '../src/index'
 
 class A extends React.Component {
   componentWillReceiveProps(props) {
-    console.log('componentWillReceiveProps')
-  }
-
-  componentDidMount() {
-    console.log('componentDidMountA')
+    console.log('componentWillReceiveProps', props)
   }
 
   render() {
@@ -33,7 +29,7 @@ class B extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('shouldComponentUpdate', nextProps, nextState)
+    console.log('shouldComponentUpdate')
     return true
   }
 
@@ -54,7 +50,7 @@ class B extends React.Component {
   render() {
     console.log('render')
     return (
-      <div>
+      <div style={{ marginTop: '35px' }}>
         <button onClick={this.click.bind(this)}>Click Me!</button>
         <A count={this.state.count} />
       </div>
