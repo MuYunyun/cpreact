@@ -57,3 +57,7 @@ ReactDOM.render(
 ### contribution
 
 [how to pr](https://github.com/MuYunyun/cpreact/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
+
+### thanks
+
+该库借鉴了 [simple-react](https://github.com/hujiulong/simple-react)，在此特别感谢 [Jiulong Hu](https://github.com/hujiulong) 的分享
