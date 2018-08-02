@@ -59,6 +59,6 @@ ReactDOM.render(
 
 ### thanks
 
-Especially thank [simple-react](https://github.com/hujiulong/simple-react) for the guidance function of the library
+尤为感谢 [simple-react](https://github.com/hujiulong/simple-react) 对该库的指导作用
 
-At the meantime，respect for [preact](https://github.com/developit/preact) and [react](https://github.com/facebook/react)
+同时致敬 [preact](https://github.com/developit/preact)，[react](https://github.com/facebook/react)

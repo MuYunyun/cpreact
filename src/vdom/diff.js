@@ -53,16 +53,16 @@ function diffTextDom(oldDom, newVdom) {
 }
 
 /**
- * 对比不同自定义组件
+ * 对比自定义组件
  * @param {*} oldDom
  * @param {*} newVdom
  */
 function diffComponent(oldDom, newVdom) {
-  if (oldDom._component && (oldDom._component.constructor !== newVdom.nodeName)) { // 如果组件不同直接替换
+  if (oldDom._component && (oldDom._component.constructor !== newVdom.nodeName)) { // 如果新老组件不同，则直接将新组件替换老组件
     const newDom = vdomToDom(newVdom)
     oldDom._component.parentNode.insertBefore(newDom, oldDom._component)
     oldDom._component.parentNode.removeChild(oldDom._component)
-  } else { // 如果组件名相同则继续比较
+  } else { // 如果组件名相同则替换 props 后
     setProps(oldDom._component, newVdom.attributes) // 将新的 attributes 值赋值给旧的
     renderComponent(oldDom._component)
   }
