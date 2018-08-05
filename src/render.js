@@ -1,6 +1,6 @@
 import * as _ from 'diana'
 import { diff } from './vdom/diff'
-import { humpToStandard } from './util'
+import { humpToStandard, defer } from './util'
 
 /**
  * 将虚拟 DOM 转化为真实 DOM 后插入指定位置
@@ -38,7 +38,7 @@ function createComponent(vdom) {
  * 更改属性，componentWillMount 和 componentWillReceiveProps 方法
  */
 function setProps(component, attributes) {
-  if (attributes) {
+  if (attributes) { // 自定义组件比较中新老组件相同时 setProps 的逻辑
     component.props = attributes
   }
 
@@ -61,7 +61,7 @@ function renderComponent(component) {
     }
   }
   if (component.base && component.componentWillUpdate) {
-    component.componentWillUpdate()
+    component.componentWillUpdate.call(component)
   }
 
   const rendered = component.render()
@@ -76,7 +76,7 @@ function renderComponent(component) {
   if (component.base) {
     component.componentDidUpdate ? component.componentDidUpdate() : void 0
   } else if (component && component.componentDidMount) {
-    component.componentDidMount()
+    defer(component.componentDidMount.bind(component))
   }
 
   component.base = base      // 标志符
@@ -92,6 +92,11 @@ function vdomToDom(vdom) {
   if (_.isFunction(vdom.nodeName)) { // 为了更加方便地书写生命周期逻辑，将自定义组件逻辑和一般 html 标签的逻辑分离开
     const component = createComponent(vdom)
     setProps(component)
+    for (const attr in vdom.attributes) { // 处理自定义组件的 ref 属性
+      if (attr === 'ref' && _.isFunction(vdom.attributes[attr])) {
+        vdom.attributes[attr](component)
+      }
+    }
     renderComponent(component)
     return component.base
   }
@@ -131,6 +136,10 @@ function setAttribute(dom, attr, value) {
     dom.setAttribute(attr, styleStr)
   } else if (attr === 'key') {
     dom[attr] = value
+  } else if (attr === 'ref') {
+    if (_.isFunction(value)) {
+      value(dom)
+    }
   } else {                          // 其它属性
     dom.setAttribute(attr, value)
   }

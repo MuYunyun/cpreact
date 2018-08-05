@@ -1,11 +1,9 @@
-import * as _ from 'diana'
 import createElement from './createElement'
 import Component from './component'
 import { render } from './render'
 
-const React = {
+const cpreact = {
   createElement,
-  Component,
 }
 
 const ReactDOM = {
@@ -15,4 +13,5 @@ const ReactDOM = {
   }
 }
 
-export { React, ReactDOM }
+export default cpreact
+export { Component, ReactDOM, createElement }

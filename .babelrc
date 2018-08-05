@@ -2,7 +2,7 @@
     "presets": ["env"],
     "plugins": [
         ["transform-react-jsx", {
-            "pragma": "React.createElement"
+            "pragma": "cpreact.createElement"
         }]
     ]
 }

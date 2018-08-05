@@ -1,16 +1,8 @@
-import { React, ReactDOM } from '../src/index'
+import cpreact, { Component, ReactDOM } from '../src/index'
 
-class A extends React.Component {
-  render() {
-    return (
-      <div>{this.props.count}</div>
-    )
-  }
-}
-
-class B extends React.Component {
-  constructor(props) {
-    super(props)
+class A extends Component {
+  constructor() {
+    super()
     this.state = {
       count: 0
     }
@@ -18,19 +10,31 @@ class B extends React.Component {
   }
 
   click() {
-    for (let i = 0; i < 10; i++) {
-      this.setState((prevState, props) => {
-        count: prevState.count++
-      })
-    }
+    this.setState({
+      count: ++this.state.count
+    })
   }
 
   render() {
-    console.log('render')
+    return <div>{this.state.count}</div>
+  }
+}
+
+class B extends Component {
+  constructor() {
+    super()
+    this.click = this.click.bind(this)
+  }
+
+  click() {
+    this.A.click()
+  }
+
+  render() {
     return (
       <div>
-        <button onClick={this.click}>Click Me!</button>
-        <A count={this.state.count} />
+        <button onClick={this.click}>加1</button>
+        <A ref={(e) => { this.A = e }} />
       </div>
     )
   }

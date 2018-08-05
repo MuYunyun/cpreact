@@ -2,50 +2,13 @@
   <img src="http://oqhtscus0.bkt.clouddn.com/9c461a61924ed0fecb6024a256671251.jpg-200">
 </div>
 
-cpreact is a lightweight react
+A mini react-like framework.
 
 ### Usage
 
 ```
-npm install cpreact
+yarn add cpreact
 ```
-
-```js
-import { React, ReactDom } from 'cpreact'
-
-class Test extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      count: 1
-    }
-  }
-
-  click() {
-    this.setState({
-      count: ++this.state.count
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <button onClick={this.click.bind(this)}>Click Me!</button>
-        <div>{this.state.count}</div>
-      </div>
-    )
-  }
-}
-
-ReactDOM.render(
-  <Test />,
-  document.getElementById('root')
-)
-```
-
-### contribution
-
-[how to pr](https://github.com/MuYunyun/cpreact/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
 
 ### develop notebook
 
@@ -54,8 +17,13 @@ ReactDOM.render(
 - [x] [组件和 state|props](https://github.com/MuYunyun/blog/issues/25)
 - [x] [生命周期](https://github.com/MuYunyun/blog/blob/master/BasicSkill/%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0React/3.生命周期.md)
 - [x] [diff 算法](https://github.com/MuYunyun/blog/issues/26)
-- [x] [setState](https://github.com/MuYunyun/blog/blob/master/BasicSkill/%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0React/5.setState.md)
-- [ ] 测试之旅
+- [x] [setState 优化](https://github.com/MuYunyun/blog/blob/master/BasicSkill/%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0React/5.setState.md)
+- [x] [ref 的实现](https://github.com/MuYunyun/blog/blob/master/BasicSkill/%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0React/6.ref.md)
+- [ ] 测试之旅，跑 preact 的测试用例 ing
+
+### contribution
+
+[how to pr](https://github.com/MuYunyun/cpreact/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
 
 ### thanks
 

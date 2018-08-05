@@ -17,7 +17,7 @@ function createElement(tag, attr, ...child) {
     key = attr.key
   }
   return {
-    attributes: attr,
+    attributes: attr == null ? undefined : attr,
     children: child,
     key,
     nodeName: tag,

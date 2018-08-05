@@ -12,5 +12,7 @@ export const humpToStandard = function (klass) {
  * @param {*} fn
  */
 export const defer = function(fn) {
-  return Promise.resolve().then(() => fn())
+  return Promise.resolve().then(function() {
+    return fn()
+  })
 }
