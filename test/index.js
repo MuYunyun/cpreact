@@ -1,8 +1,8 @@
-import cpreact, { Component, ReactDOM } from '../src/index'
+import cpreact, { Component, ReactDOM, PureComponent } from '../src/index'
 
-class A extends Component {
-  constructor() {
-    super()
+class B extends PureComponent {
+  constructor(props) {
+    super(props)
     this.state = {
       count: 0
     }
@@ -10,31 +10,18 @@ class A extends Component {
   }
 
   click() {
+    const state = Object.assign({}, this.state)
+
     this.setState({
-      count: ++this.state.count
+      count: ++this.state.count,
     })
-  }
-
-  render() {
-    return <div>{this.state.count}</div>
-  }
-}
-
-class B extends Component {
-  constructor() {
-    super()
-    this.click = this.click.bind(this)
-  }
-
-  click() {
-    this.A.click()
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.click}>加1</button>
-        <A ref={(e) => { this.A = e }} />
+        <button onClick={this.click}>增加</button>
+        <div>{this.state.count}</div>
       </div>
     )
   }

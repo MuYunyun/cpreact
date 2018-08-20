@@ -1,5 +1,6 @@
 import createElement from './createElement'
 import Component from './component'
+import PureComponent from './pureComponent'
 import { render } from './render'
 
 const cpreact = {
@@ -14,4 +15,4 @@ const ReactDOM = {
 }
 
 export default cpreact
-export { Component, ReactDOM, createElement }
+export { Component, PureComponent, ReactDOM, createElement }

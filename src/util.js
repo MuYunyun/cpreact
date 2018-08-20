@@ -16,3 +16,32 @@ export const defer = function(fn) {
     return fn()
   })
 }
+
+/**
+ * 浅比较
+ * @param {*} oldState
+ * @param {*} nextState
+ */
+export const shallowEqual = function(oldState, nextState) {
+  const oldKeys = Object.keys(oldState)
+  const newKeys = Object.keys(nextState)
+
+  if (oldKeys.length !== newKeys.length) {
+    return false
+  }
+
+  let flag = true
+  for (let i = 0; i < oldKeys.length; i++) {
+    if (!nextState.hasOwnProperty(oldKeys[i])) {
+      flag = false
+      break
+    }
+
+    if (nextState[oldKeys[i]] !== oldState[oldKeys[i]]) {
+      flag = false
+      break
+    }
+  }
+
+  return flag
+}
