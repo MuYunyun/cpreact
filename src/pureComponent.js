@@ -11,10 +11,10 @@ function PureComponent(props) {
 PureComponent.prototype.setState = function(updater, cb) {
   const cpState = this.state
   this.shouldComponentUpdate = function(nextProps, nextState) {
-    if (shallowEqual(cpState, nextState)) {
-      return false // 浅比较相等的话，不渲染
-    } else {
+    if (!shallowEqual(cpState, nextState)) {
       return true  // 浅比较不等的话，渲染
+    } else {
+      return false // 浅比较相等的话，不渲染
     }
   }
   asyncRender(updater, this, cb)

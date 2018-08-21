@@ -196,6 +196,39 @@ class B extends Component {
 ```
 </details>
 
+<details>
+<summary>PureComponent</summary>
+
+```js
+class B extends PureComponent {
+  constructor(props) {
+    super(props)
+    this.state = {
+      count: 0
+    }
+    this.click = this.click.bind(this)
+  }
+
+  click() {
+    const state = Object.assign({}, this.state)
+
+    this.setState({
+      count: this.state.count + 1,
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.click}>增加</button>
+        <div>{this.state.count}</div>
+      </div>
+    )
+  }
+}
+```
+</details>
+
 ### How to realize a react from 0 to 1
 
 - [x] [前置准备](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/0.前置准备.md)
