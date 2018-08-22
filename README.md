@@ -272,9 +272,11 @@ class B extends PureComponent {
 - [x] [diff 算法](https://github.com/MuYunyun/blog/issues/26)
 - [x] [setState 优化](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/5.setState.md)
 - [x] [ref 的实现](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/6.ref.md)
-- [ ] [pureComponent](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/7.PureComponent.md)
+- [x] [pureComponent](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/7.PureComponent.md)
 - [ ] hoc
 - [ ] 测试之旅，跑 preact 的测试用例 ing
+
+You can view the [release](https://github.com/MuYunyun/cpreact/releases) to find the corresponding code synced with the article.
 
 ### contribution
 
