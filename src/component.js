@@ -3,8 +3,8 @@ import { renderComponent } from './render'
 import { defer } from './util'
 
 function Component(props) {
-  this.props = props
-  this.state = this.state || {}
+  this.props = props || {}
+  this.state = {}
 }
 
 // update the state of component and rerender

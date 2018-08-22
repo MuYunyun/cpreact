@@ -200,6 +200,7 @@ class B extends Component {
 <summary>PureComponent</summary>
 
 ```js
+// 测试用例：验证 state 浅比较
 class B extends PureComponent {
   constructor(props) {
     super(props)
@@ -222,6 +223,39 @@ class B extends PureComponent {
       <div>
         <button onClick={this.click}>增加</button>
         <div>{this.state.count}</div>
+      </div>
+    )
+  }
+}
+
+// 测试用例：验证 props 浅比较
+class A extends PureComponent {
+  render() {
+    return (
+      <div>{this.props.count.number}</div>
+    )
+  }
+}
+
+class B extends PureComponent {
+  constructor(props) {
+    super(props)
+    this.state = {
+      count: { number: 1 }
+    }
+  }
+
+  click() {
+    this.setState({
+      count: { number: 1 }
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.click.bind(this)}>Click Me!</button>
+        <A count={ this.state.count } />
       </div>
     )
   }
