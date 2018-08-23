@@ -1,29 +1,62 @@
 import cpreact, { Component, ReactDOM } from '../src/index'
 
-function decorate(WrappedComponent) {
-  return class C extends Component {
+// function ppDecorate(WrappedComponent) {
+//   return class extends Component {
+//     constructor() {
+//       super()
+//       this.state = {
+//         value: ''
+//       }
+//       this.onChange = this.onChange.bind(this)
+//     }
 
-    render() {
-      return (
-        <WrappedComponent />
-      )
-    }
-  }
-}
+//     onChange(e) {
+//       console.log('111', e)
+//       this.setState({
+//         value: e.target.value
+//       })
+//     }
 
-@decorate
+//     render() {
+//       const obj = {
+//         onChange: this.onChange,
+//         value: this.state.value,
+//       }
+
+//       return (
+//         <WrappedComponent { ...this.props } { ...obj } />
+//       )
+//     }
+//   }
+// }
+
+// @ppDecorate
+// class B extends Component {
+
+//   render() {
+//     return (
+//       <div>
+//         <input { ...this.props } />
+//         <span>{ this.props.value }</span>
+//       </div>
+//     )
+//   }
+// }
+
 class B extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      count: 1
-    }
+  constructor() {
+    super()
+    this.onChange = this.onChange.bind(this)
+  }
+
+  onChange(e) {
+    console.log(e)
   }
 
   render() {
     return (
       <div>
-        { this.state.count }
+        <input onChange={this.onChange} />
       </div>
     )
   }

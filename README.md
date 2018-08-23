@@ -4,15 +4,24 @@
 
 [![npm version](https://badge.fury.io/js/cpreact.svg)](https://badge.fury.io/js/cpreact) ![LICENSE MIT](https://img.shields.io/npm/l/express.svg)
 
-A mini react-like wheel.
+This proj is aim to realize react from 0 to 1. In the meantime the develop experience is writen down as a series of articles as follow:
 
-### Install
+- [x] [前置准备](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/0.前置准备.md)
+- [x] [JSX 和 Virtual DOM](https://github.com/MuYunyun/blog/issues/24)
+- [x] [组件和 state|props](https://github.com/MuYunyun/blog/issues/25)
+- [x] [生命周期](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/3.生命周期.md)
+- [x] [diff 算法](https://github.com/MuYunyun/blog/issues/26)
+- [x] [setState 优化](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/5.setState.md)
+- [x] [ref 的实现](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/6.ref.md)
+- [x] [PureComponent](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/7.PureComponent.md)
+- [ ] 事件机制探索
+- [ ] [HOC 探幽](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/9.HOC探索.md)
 
-```
-yarn add cpreact
-```
+You can view the [release](https://github.com/MuYunyun/cpreact/releases) to find the corresponding code synced with the article.
 
-### Useful Test Case
+### Useful Demos
+
+There are some useful test cases from the develop experience. I've collected them as follow:
 
 <details>
   <summary>components</summary>
@@ -297,29 +306,13 @@ class B extends PureComponent {
 ```
 </details>
 
-### How to realize a react from 0 to 1
+### Install
 
-本系列文章在实现一个 (x)react 的同时理顺 React 框架的主干内容(JSX/虚拟DOM/组件/生命周期/diff算法/setState/ref/PureComponent/...)
+* Install with `yarn add cpreact`
+* Then you can use it in your toy proj.(Not use in the online enviroment!!!)
 
-- [x] [前置准备](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/0.前置准备.md)
-- [x] [JSX 和 Virtual DOM](https://github.com/MuYunyun/blog/issues/24)
-- [x] [组件和 state|props](https://github.com/MuYunyun/blog/issues/25)
-- [x] [生命周期](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/3.生命周期.md)
-- [x] [diff 算法](https://github.com/MuYunyun/blog/issues/26)
-- [x] [setState 优化](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/5.setState.md)
-- [x] [ref 的实现](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/6.ref.md)
-- [x] [pureComponent](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/7.PureComponent.md)
-- [ ] hoc
-- [ ] 测试之旅，跑 preact 的测试用例 ing
+### Thanks
 
-You can view the [release](https://github.com/MuYunyun/cpreact/releases) to find the corresponding code synced with the article.
+Especially thank [simple-react](https://github.com/hujiulong/simple-react) for the guidance function of this library. At the meantime，respect for [preact](https://github.com/developit/preact) and [react](https://github.com/facebook/react)
 
-### contribution
-
-[how to pr](https://github.com/MuYunyun/cpreact/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
-
-### thanks
-
-Especially thank [simple-react](https://github.com/hujiulong/simple-react) for the guidance function of this library
-
-At the meantime，respect for [preact](https://github.com/developit/preact) and [react](https://github.com/facebook/react)
+If you want to contrubute this proj, you can read [how to pr](https://github.com/MuYunyun/cpreact/blob/master/.github/PULL_REQUEST_TEMPLATE.md). Thanks!
