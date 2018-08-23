@@ -1,11 +1,12 @@
 {
   "name": "cpreact",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "a lightweight react",
-  "main": "dist/src.9985fc55.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "parcel ./test/index.html --open -p 1234 --no-cache --no-hmr",
-    "test": "npm run test:karma",
+    "build": "parcel build src/index.js",
+    "test": "npm run test:karma NODE_ENV=production",
     "test:mocha": "mocha --recursive --require babel-register test/shared",
     "test:karma": "karma start test/karma.conf.js --single-run",
     "test:mocha:watch": "npm run test:mocha -- watch",
@@ -34,6 +35,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.0.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
@@ -51,8 +53,8 @@
     "karma-source-map-support": "^1.2.0",
     "karma-sourcemap-loader": "^0.3.6",
     "karma-webpack": "^3.0.0",
-    "puppeteer": "^1.5.0",
     "mocha": "^5.0.4",
+    "puppeteer": "^1.5.0",
     "sinon": "^4.4.2",
     "sinon-chai": "^3.0.0",
     "webpack": "^4.3.0"

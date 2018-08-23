@@ -3,6 +3,9 @@
     "plugins": [
         ["transform-react-jsx", {
             "pragma": "cpreact.createElement"
-        }]
+        }],
+        [
+            "transform-decorators-legacy"
+        ]
     ]
 }

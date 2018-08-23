@@ -1,32 +1,29 @@
-import cpreact, { Component, ReactDOM, PureComponent } from '../src/index'
+import cpreact, { Component, ReactDOM } from '../src/index'
 
-class A extends PureComponent {
-  render() {
-    return (
-      <div>{this.props.count.number}</div>
-    )
+function decorate(WrappedComponent) {
+  return class C extends Component {
+
+    render() {
+      return (
+        <WrappedComponent />
+      )
+    }
   }
 }
 
-class B extends PureComponent {
+@decorate
+class B extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      count: { number: 1 }
+      count: 1
     }
-  }
-
-  click() {
-    this.setState({
-      count: { number: 1 }
-    })
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.click.bind(this)}>Click Me!</button>
-        <A count={ this.state.count } />
+        { this.state.count }
       </div>
     )
   }

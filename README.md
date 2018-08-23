@@ -2,6 +2,8 @@
   <img src="http://oqhtscus0.bkt.clouddn.com/9c461a61924ed0fecb6024a256671251.jpg-200">
 </div>
 
+[![npm version](https://badge.fury.io/js/cpreact.svg)](https://badge.fury.io/js/cpreact) ![LICENSE MIT](https://img.shields.io/npm/l/express.svg)
+
 A mini react-like wheel.
 
 ### Install
@@ -10,7 +12,7 @@ A mini react-like wheel.
 yarn add cpreact
 ```
 
-### Demo Drive
+### Useful Test Case
 
 <details>
   <summary>components</summary>
@@ -42,6 +44,38 @@ class A extends Component {
 
 ReactDOM.render(
   <A name="count" />,
+  document.getElementById('root')
+)
+```
+</details>
+
+<details>
+  <summary>state && props</summary>
+
+```js
+// this case is to know the attr in the jsx `<A a={1} { ...obj } />` is converted to { a: 1, b: 2, c: 3 }
+
+class A extends Component {
+  render() {
+    return (
+      <div>{this.props.a + this.props.b + this.props.c}</div>
+    )
+  }
+}
+
+class B extends Component {
+  render() {
+    const obj = { b: 2, c: 3 }
+    return (
+      <div>
+        <A a={1} { ...obj } />
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(
+  <B />,
   document.getElementById('root')
 )
 ```
@@ -264,6 +298,8 @@ class B extends PureComponent {
 </details>
 
 ### How to realize a react from 0 to 1
+
+本系列文章在实现一个 (x)react 的同时理顺 React 框架的主干内容(JSX/虚拟DOM/组件/生命周期/diff算法/setState/ref/PureComponent/...)
 
 - [x] [前置准备](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/0.前置准备.md)
 - [x] [JSX 和 Virtual DOM](https://github.com/MuYunyun/blog/issues/24)
