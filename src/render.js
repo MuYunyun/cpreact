@@ -80,7 +80,9 @@ function renderComponent(component) {
   }
 
   component.base = base        // 将新得到的 dom 赋到 component 上
-  base._component = component  // 同时将 component 赋到新得到的 dom 上
+  if (!_.isFunction(rendered.nodeName)) { // 见 [踩坑日志](https://github.com/MuYunyun/cpreact/issues/2)
+    base._component = component  // 同时将 component 赋到新得到的 dom 上
+  }
 }
 
 /**

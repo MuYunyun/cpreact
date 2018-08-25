@@ -23,9 +23,7 @@ function ppDecorate(WrappedComponent) {
       }
 
       return (
-        <span>
-          <WrappedComponent { ...this.props } { ...obj } />
-        </span>
+        <WrappedComponent { ...this.props } { ...obj } />
       )
     }
   }

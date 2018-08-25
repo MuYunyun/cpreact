@@ -4,7 +4,7 @@
 
 [![npm version](https://badge.fury.io/js/cpreact.svg)](https://badge.fury.io/js/cpreact) ![LICENSE MIT](https://img.shields.io/npm/l/express.svg)
 
-This proj is aim to realize react from 0 to 1. In the meantime the develop experience is writen down as a series of articles as follow:
+This proj is aim to implement react from 0 to 1. In the meantime the develop experience is writen down as a series of articles as follow:
 
 - [x] [前置准备](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/0.前置准备.md)
 - [x] [JSX 和 Virtual DOM](https://github.com/MuYunyun/blog/issues/24)
@@ -14,8 +14,8 @@ This proj is aim to realize react from 0 to 1. In the meantime the develop exper
 - [x] [setState 优化](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/5.setState.md)
 - [x] [ref 的实现](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/6.ref.md)
 - [x] [PureComponent](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/7.PureComponent.md)
-- [ ] 事件机制探索
 - [ ] [HOC 探幽](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/9.HOC探索.md)
+- [ ] 事件机制探索
 
 You can view the [release](https://github.com/MuYunyun/cpreact/releases) to find the corresponding code synced with the article.
 
