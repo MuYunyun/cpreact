@@ -163,7 +163,7 @@ ReactDOM.render(
   <summary>setState</summary>
 
 ```js
-export default class B extends Component {
+class B extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -181,7 +181,6 @@ export default class B extends Component {
   }
 
   render() {
-    console.log(this.state.count)
     return (
       <div>
         <button onClick={this.click}>增加</button>

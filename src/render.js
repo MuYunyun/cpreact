@@ -79,8 +79,8 @@ function renderComponent(component) {
     defer(component.componentDidMount.bind(component))
   }
 
-  component.base = base      // 标志符
-  base._component = component
+  component.base = base        // 将新得到的 dom 赋到 component 上
+  base._component = component  // 同时将 component 赋到新得到的 dom 上
 }
 
 /**

@@ -5,21 +5,23 @@ import { vdomToDom, setAttribute, setProps, renderComponent } from '../render'
  * 比较旧的 dom 节点和新的 virtual dom 节点：
  * @param {*} oldDom  旧的 dom 节点
  * @param {*} newVdom 新的 virtual dom 节点
+ * @returns {*} newDom
  */
 function diff(oldDom, newVdom) {
   if (_.isNumber(newVdom)) {
-    newVdom = newVdom.toString()
+    newVdom = newVdom.toString() // 将数字转为字符串统一比较
   }
 
-  if (_.isString(newVdom)) { // 如果是文本
+  if (_.isString(newVdom)) {            // 如果是文本
     return diffTextDom(oldDom, newVdom)
   }
 
   if (_.isFunction(newVdom.nodeName)) { // 如果是自定义组件
-    return diffComponent(oldDom, newVdom)
+    diffComponent(oldDom, newVdom)
+    return oldDom
   }
 
-  if (oldDom.nodeName.toLowerCase() !== newVdom.nodeName) {
+  if (oldDom.nodeName.toLowerCase() !== newVdom.nodeName) { // 对比非文本节点
     diffNotTextDom(oldDom, newVdom)
   }
 
@@ -29,7 +31,7 @@ function diff(oldDom, newVdom) {
     diffChild(oldDom, newVdom)
   }
 
-  return oldDom
+  return oldDom // return new oldDom
 }
 
 /**
@@ -60,8 +62,9 @@ function diffTextDom(oldDom, newVdom) {
 function diffComponent(oldDom, newVdom) {
   if (oldDom._component && (oldDom._component.constructor !== newVdom.nodeName)) { // 如果新老组件不同，则直接将新组件替换老组件
     const newDom = vdomToDom(newVdom)
-    oldDom._component.parentNode.insertBefore(newDom, oldDom._component)
-    oldDom._component.parentNode.removeChild(oldDom._component)
+    oldDom.parentNode.insertBefore(newDom, oldDom)
+    // if () {}
+    oldDom.parentNode.removeChild(oldDom)
   } else { // 如果组件名相同则替换 props 后
     setProps(oldDom._component, newVdom.attributes) // 将新的 attributes 值赋值给旧的
     renderComponent(oldDom._component)
