@@ -45,7 +45,7 @@ class A extends Component {
     return (
       <div>
         <button onClick={this.click.bind(this)}>Click Me!</button>
-        <div>{this.props.name}:{this.state.count}</div>
+        <div>{this.state.count}</div>
       </div>
     )
   }

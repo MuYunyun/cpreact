@@ -12,6 +12,12 @@ Component.prototype.setState = function(updater, cb) {
   asyncRender(updater, this, cb)
 }
 
+// force to update
+Component.prototype.forceUpdate = function(cb) {
+  this.allowShouldComponentUpdate = false // 见https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/2.组件和state|props.md
+  asyncRender({}, this, cb)
+}
+
 let componentArr = []
 
 /**
@@ -41,6 +47,7 @@ function render() {
   let component
   while (component = componentArr.shift()) {
     renderComponent(component) // rerender
+    component.allowShouldComponentUpdate = true
   }
 }
 

@@ -27,6 +27,12 @@ function isShouldComponentUpdate() {
   }
 }
 
+// force to update
+PureComponent.prototype.forceUpdate = function (cb) {
+  this.allowShouldComponentUpdate = false
+  asyncRender({}, this, cb)
+}
+
 // 以下代码同 component.js
 let componentArr = []
 
@@ -57,6 +63,7 @@ function render() {
   let component
   while (component = componentArr.shift()) {
     renderComponent(component) // rerender
+    component.allowShouldComponentUpdate = true
   }
 }
 

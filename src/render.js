@@ -54,7 +54,7 @@ function setProps(component, attributes) {
  * @param {*} component
  */
 function renderComponent(component) {
-  if (component.base && component.shouldComponentUpdate) {
+  if (component.base && component.shouldComponentUpdate && component.allowShouldComponentUpdate !== false) {
     const bool = component.shouldComponentUpdate(component.props, component.state)
     if (!bool && bool !== undefined) {
       return false // shouldComponentUpdate() 返回 false，则生命周期终止
