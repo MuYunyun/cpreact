@@ -6,15 +6,15 @@
 
 This proj is aim to implement react from 0 to 1. In the meantime the develop experience is writen down as a series of articles as follow:
 
-- [x] [前置准备](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/0.前置准备.md)
+- [x] [前置准备](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/0.前置准备.md)
 - [x] [JSX 和 Virtual DOM](https://github.com/MuYunyun/blog/issues/24)
 - [x] [组件和 state|props](https://github.com/MuYunyun/blog/issues/25)
-- [x] [生命周期](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/3.生命周期.md)
+- [x] [生命周期](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/3.生命周期.md)
 - [x] [diff 算法](https://github.com/MuYunyun/blog/issues/26)
-- [x] [setState 优化](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/5.setState.md)
-- [x] [ref 的实现](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/6.ref.md)
-- [x] [PureComponent](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/7.PureComponent.md)
-- [ ] [HOC 探幽](https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/9.HOC探索.md)
+- [x] [setState 优化](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/5.setState.md)
+- [x] [ref 的实现](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/6.ref.md)
+- [x] [PureComponent 的实现](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/7.PureComponent.md)
+- [x] [HOC 探幽](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/8.HOC探索.md)
 - [ ] 事件机制探索
 
 You can view the [release](https://github.com/MuYunyun/cpreact/releases) to find the corresponding code synced with the article.

@@ -1,48 +1,5 @@
 import cpreact, { Component, ReactDOM } from '../src/index'
 
-// 测试 hoc
-// function ppDecorate(WrappedComponent) {
-//   return class extends Component {
-//     constructor() {
-//       super()
-//       this.state = {
-//         value: ''
-//       }
-//       this.onChange = this.onChange.bind(this)
-//     }
-
-//     onChange(e) {
-//       this.setState({
-//         value: e.target.value
-//       })
-//     }
-
-//     render() {
-//       const obj = {
-//         onChange: this.onChange,
-//         value: this.state.value,
-//       }
-
-//       return (
-//         <WrappedComponent { ...this.props } { ...obj } />
-//       )
-//     }
-//   }
-// }
-
-// @ppDecorate
-// class B extends Component {
-
-//   render() {
-//     return (
-//       <div>
-//         <input { ...this.props } />
-//         <div>{ this.props.value }</div>
-//       </div>
-//     )
-//   }
-// }
-
 // ------------- 测试事件 --------------
 // class B extends Component {
 //   constructor() {
@@ -63,33 +20,24 @@ import cpreact, { Component, ReactDOM } from '../src/index'
 //   }
 // }
 
-// 测试是否需要 forceUpdate
-class B extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      count: {
-        value: 1
+function iiHOC(WrappedComponent) {
+  return class extends WrappedComponent {
+    render() {
+      const parentRender = super.render()
+      if (parentRender.nodeName === 'span') {
+        return (
+          <span>继承反转</span>
+        )
       }
     }
   }
+}
 
-  shouldComponentUpdate() {
-    return false
-  }
-
-  click() {
-    console.log('111', this.state.count.value)
-    this.state.count.value = ++this.state.count.value
-    this.forceUpdate()
-  }
-
+@iiHOC
+class B extends Component {
   render() {
     return (
-      <div>
-        <button onClick={this.click.bind(this)}>Click Me!</button>
-        <div>{this.state.count.value}</div>
-      </div>
+      <span>Inheritance Inversion</span>
     )
   }
 }
