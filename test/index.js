@@ -1,48 +1,16 @@
 import cpreact, { Component, ReactDOM } from '../src/index'
 
-// ------------- 测试事件 --------------
-// class B extends Component {
-//   constructor() {
-//     super()
-//     this.onChange = this.onChange.bind(this)
-//   }
-
-//   onChange(e) {
-//     console.log(e)
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         <input onChange={this.onChange} />
-//       </div>
-//     )
-//   }
-// }
-
-function iiHOC(WrappedComponent) {
-  return class extends WrappedComponent {
-    render() {
-      const parentRender = super.render()
-      if (parentRender.nodeName === 'span') {
-        return (
-          <span>继承反转</span>
-        )
-      }
-    }
-  }
-}
-
-@iiHOC
-class B extends Component {
+// You can try to run test demo in this file
+// how to use ? you can read https://github.com/MuYunyun/cpreact/blob/master/.github/PULL_REQUEST_TEMPLATE.md
+class App extends Component {
   render() {
     return (
-      <span>Inheritance Inversion</span>
+      <div>hello, cpreact</div>
     )
   }
 }
 
 ReactDOM.render(
-  <B />,
+  <App />,
   document.getElementById('root')
 )
