@@ -14,7 +14,7 @@ Component.prototype.setState = function(updater, cb) {
 
 // force to update
 Component.prototype.forceUpdate = function(cb) {
-  this.allowShouldComponentUpdate = false // 见https://github.com/MuYunyun/blog/blob/master/BasicSkill/从0到1实现React/2.组件和state|props.md
+  this.allowShouldComponentUpdate = false // https://github.com/MuYunyun/blog/blob/master/从0到1实现React/2.组件和state|props.md#forceupdate-的实现
   asyncRender({}, this, cb)
 }
 

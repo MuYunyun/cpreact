@@ -4,19 +4,24 @@
 
 [![npm version](https://badge.fury.io/js/cpreact.svg)](https://badge.fury.io/js/cpreact) ![LICENSE MIT](https://img.shields.io/npm/l/express.svg)
 
-### 从 0 到 1 实现 React 系列
+This proj is aim to implement react from 0 to 1. In the meantime the develop experience is writen down as a series of articles as follow:
 
-* [JSX 和 Virtual DOM](https://github.com/MuYunyun/blog/issues/24)
-* [组件和 state|props](https://github.com/MuYunyun/blog/issues/25)
-* [生命周期和 diff 算法](https://github.com/MuYunyun/blog/issues/26)
-* [优化 setState 和 ref 的实现](https://github.com/MuYunyun/blog/issues/27)
-* [PureComponent 实现 && HOC 探幽](https://github.com/MuYunyun/blog/issues/29)
+- [x] [前置准备](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/0.前置准备.md)
+- [x] [JSX 和 Virtual DOM](https://github.com/MuYunyun/blog/issues/24)
+- [x] [组件和 state|props](https://github.com/MuYunyun/blog/issues/25)
+- [x] [生命周期](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/3.生命周期.md)
+- [x] [diff 算法](https://github.com/MuYunyun/blog/issues/26)
+- [x] [setState 优化](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/5.setState.md)
+- [x] [ref 的实现](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/6.ref.md)
+- [x] [PureComponent 的实现](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/7.PureComponent.md)
+- [x] [HOC 探幽](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/8.HOC探索.md)
+- [ ] 事件机制探索
 
-> 你可以从 [release](https://github.com/MuYunyun/cpreact/releases) 中找到与章节对应的代码。同时可以在 [blog](https://github.com/MuYunyun/blog#%E4%BB%8E-0-%E5%88%B0-1-%E5%AE%9E%E7%8E%B0-react) 中查看该系列最新进度。
+You can view the [release](https://github.com/MuYunyun/cpreact/releases) to find the corresponding code synced with the article.
 
 ### Useful Demos
 
-在开发过程中，收集了一些有用的测试用例，罗列如下：
+There are some useful test cases from the develop experience. I've collected them as follow:
 
 <details>
   <summary>components</summary>
@@ -305,10 +310,8 @@ class B extends PureComponent {
 * Install with `yarn add cpreact`
 * Then you can use it in your toy proj.(Not use in the production enviroment!!!)
 
-### Contribution
-
-If you want to contrubute this proj, you can read [how to pr](https://github.com/MuYunyun/cpreact/blob/master/.github/PULL_REQUEST_TEMPLATE.md).
-
 ### Thanks
 
 Especially thank [simple-react](https://github.com/hujiulong/simple-react) for the guidance function of this library. At the meantime，respect for [preact](https://github.com/developit/preact) and [react](https://github.com/facebook/react)
+
+If you want to contrubute this proj, you can read [how to pr](https://github.com/MuYunyun/cpreact/blob/master/.github/PULL_REQUEST_TEMPLATE.md). Thanks!
