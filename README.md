@@ -2,7 +2,7 @@
   <img src="http://oqhtscus0.bkt.clouddn.com/9c461a61924ed0fecb6024a256671251.jpg-200">
 </div>
 
-[![npm version](https://badge.fury.io/js/cpreact.svg)](https://badge.fury.io/js/cpreact) ![LICENSE MIT](https://img.shields.io/npm/l/express.svg)
+[![npm version](https://badge.fury.io/js/cpreact.svg)](https://badge.fury.io/js/cpreact) ![LICENSE MIT](https://img.shields.io/npm/l/cpreact.svg)
 
 ### 从 0 到 1 实现 React 系列
 
@@ -12,7 +12,18 @@
 * [优化 setState 和 ref 的实现](https://github.com/MuYunyun/blog/issues/27)
 * [PureComponent 实现 && HOC 探幽](https://github.com/MuYunyun/blog/issues/29)
 
-> 你可以从 [release](https://github.com/MuYunyun/cpreact/releases) 中找到与章节对应的代码。同时可以在 [blog](https://github.com/MuYunyun/blog#%E4%BB%8E-0-%E5%88%B0-1-%E5%AE%9E%E7%8E%B0-react) 中查看该系列最新进度。
+> 与章节对应的代码可以在 [更新日志](https://github.com/MuYunyun/cpreact/releases) 下载。
+
+> 该系列最新进度可以在 [blog](https://github.com/MuYunyun/blog#%E4%BB%8E-0-%E5%88%B0-1-%E5%AE%9E%E7%8E%B0-react) 中查看。
+
+### Usage
+
+```js
+npm install -g parcel-bundler
+npm run start
+```
+
+执行完上述命令后，可以发现项目自动启动浏览器并在 `localhost:8888` 上展示 [测试用例](https://github.com/MuYunyun/cpreact/blob/master/test/index.js) 中的内容。
 
 ### Useful Demos
 
@@ -158,7 +169,7 @@ ReactDOM.render(
   <summary>setState</summary>
 
 ```js
-class B extends Component {
+class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -299,11 +310,6 @@ class B extends PureComponent {
 }
 ```
 </details>
-
-### Install
-
-* Install with `yarn add cpreact`
-* Then you can use it in your toy proj.(Not use in the production enviroment!!!)
 
 ### Contribution
 

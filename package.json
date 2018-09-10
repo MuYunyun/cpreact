@@ -4,7 +4,7 @@
   "description": "a lightweight react",
   "main": "dist/index.js",
   "scripts": {
-    "start": "parcel ./test/index.html --open -p 1234 --no-cache --no-hmr",
+    "start": "parcel ./test/index.html --open -p 8888 --no-cache --no-hmr",
     "build": "parcel build src/index.js",
     "test": "npm run test:karma NODE_ENV=production",
     "test:mocha": "mocha --recursive --require babel-register test/shared",

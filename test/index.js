@@ -12,16 +12,28 @@ import cpreact, { Component, ReactDOM } from '../src/index'
 class App extends Component {
   constructor(props) {
     super(props)
-    this.onChange = this.onChange.bind(this)
+    this.state = {
+      count: 0
+    }
+    this.click = this.click.bind(this)
   }
 
-  onChange(e) {
-    console.log('111', e)
+  click() {
+    for (let i = 0; i < 10; i++) {
+      this.setState({ // 在先前的逻辑中，没调用一次 setState 就会 render 一次
+        count: ++this.state.count
+      })
+    }
+
+    this.state.count = 13;
   }
 
   render() {
     return (
-      <input onChange={this.onChange} />
+      <div>
+        <button onClick={this.click}>增加</button>
+        <div>{this.state.count}</div>
+      </div>
     )
   }
 }
