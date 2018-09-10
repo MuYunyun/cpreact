@@ -7,7 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+* 用 input 事件同步 onChange 事件(与 React 同步)
+* 使用 Webpack 替代 Parcel(社区更广)
+
 ## [0.4.1](https://github.com/MuYunyun/cpreact/releases/tag/v0.4.1) 2018-8-27
+
+### Added
 
 * do reasearch in HOC
 

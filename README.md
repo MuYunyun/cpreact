@@ -19,11 +19,13 @@
 ### Usage
 
 ```js
-npm install -g parcel-bundler
-npm run start
+yarn install
+yarn start
 ```
 
-执行完上述命令后，可以发现项目自动启动浏览器并在 `localhost:8888` 上展示 [测试用例](https://github.com/MuYunyun/cpreact/blob/master/test/index.js) 中的内容。
+执行完上述命令后，浏览器会自动打开并在 `localhost:8080` 上展示 `hello,cpreact`。
+
+![](http://oqhtscus0.bkt.clouddn.com/4b7cca0d7176545b5556b54c77200595.jpg-200)
 
 ### Useful Demos
 

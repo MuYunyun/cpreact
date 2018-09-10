@@ -6,6 +6,12 @@
         }],
         [
             "transform-decorators-legacy"
+        ],
+        [
+            "on-demand-loading",
+            {
+                "library": "diana"
+            }
         ]
     ]
 }
