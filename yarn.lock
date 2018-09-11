@@ -652,9 +652,9 @@ babel-plugin-check-es2015-constants@^6.22.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-on-demand-loading@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/babel-plugin-on-demand-loading/-/babel-plugin-on-demand-loading-0.0.5.tgz#1fef636afe9211b0e99322388685d9eec7d22f36"
+babel-plugin-on-demand-loading@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/babel-plugin-on-demand-loading/-/babel-plugin-on-demand-loading-0.0.8.tgz#34763dd20580c0ff0d85da013d77088710f5e36b"
   dependencies:
     babel-core "^6.26.3"
     babel-types "^6.26.0"

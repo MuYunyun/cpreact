@@ -12,7 +12,7 @@
 * [优化 setState 和 ref 的实现](https://github.com/MuYunyun/blog/issues/27)
 * [PureComponent 实现 && HOC 探幽](https://github.com/MuYunyun/blog/issues/29)
 
-> 与章节对应的代码可以在 [更新日志](https://github.com/MuYunyun/cpreact/releases) 下载。
+> 与章节对应的代码可以在 [更新日志](https://github.com/MuYunyun/cpreact/blob/master/CHANGELOG.md) 下载。
 
 > 该系列最新进度可以在 [blog](https://github.com/MuYunyun/blog#%E4%BB%8E-0-%E5%88%B0-1-%E5%AE%9E%E7%8E%B0-react) 中查看。
 

@@ -1,4 +1,4 @@
-import * as _ from 'diana'
+import { isFunction } from 'diana'
 import { renderComponent } from './render'
 import { defer, shallowEqual } from './util'
 
@@ -48,7 +48,7 @@ function asyncRender(updater, component, cb) {
   }
 
   if (cb) defer(cb)
-  if (_.isFunction(updater)) {
+  if (isFunction(updater)) {
     updater = updater(component.state, component.props)
   }
   component.state = Object.assign({}, component.state, updater)

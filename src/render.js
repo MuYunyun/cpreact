@@ -1,4 +1,4 @@
-import * as _ from 'diana'
+import { isFunction, isNumber, isString } from 'diana'
 import { diff } from './vdom/diff'
 import { humpToStandard, defer } from './util'
 
@@ -80,7 +80,7 @@ function renderComponent(component) {
   }
 
   component.base = base        // 将新得到的 dom 赋到 component 上
-  if (!_.isFunction(rendered.nodeName)) { // 见 [踩坑日志](https://github.com/MuYunyun/cpreact/issues/2)
+  if (!isFunction(rendered.nodeName)) { // 见 [踩坑日志](https://github.com/MuYunyun/cpreact/issues/2)
     base._component = component  // 同时将 component 赋到新得到的 dom 上
   }
 }
@@ -91,18 +91,18 @@ function renderComponent(component) {
  * @return dom
  */
 function vdomToDom(vdom) {
-  if (_.isFunction(vdom.nodeName)) { // 为了更加方便地书写生命周期逻辑，将自定义组件逻辑和一般 html 标签的逻辑分离开
+  if (isFunction(vdom.nodeName)) { // 为了更加方便地书写生命周期逻辑，将自定义组件逻辑和一般 html 标签的逻辑分离开
     const component = createComponent(vdom)
     setProps(component)
     for (const attr in vdom.attributes) { // 处理自定义组件的 ref 属性
-      if (attr === 'ref' && _.isFunction(vdom.attributes[attr])) {
+      if (attr === 'ref' && isFunction(vdom.attributes[attr])) {
         vdom.attributes[attr](component)
       }
     }
     renderComponent(component)
     return component.base
   }
-  if (_.isString(vdom) || _.isNumber(vdom)) {
+  if (isString(vdom) || isNumber(vdom)) {
     const textNode = document.createTextNode(vdom)
     return textNode // 待测验 <div>I'm {this.props.name}</div>
   }
@@ -133,14 +133,14 @@ function setAttribute(dom, attr, value) {
     let standardCss
     for (let klass in value) {
       standardCss = humpToStandard(klass)
-      value[klass] = _.isNumber(+value[klass]) ? value[klass] + 'px' : value[klass] // style={{ className: '20' || '20px' }}>
+      value[klass] = isNumber(+value[klass]) ? value[klass] + 'px' : value[klass] // style={{ className: '20' || '20px' }}>
       styleStr += `${standardCss}: ${value[klass]};`
     }
     dom.setAttribute(attr, styleStr)
   } else if (attr === 'key') {
     dom[attr] = value
   } else if (attr === 'ref') {
-    if (_.isFunction(value)) {
+    if (isFunction(value)) {
       value(dom)
     }
   } else {                          // 其它属性

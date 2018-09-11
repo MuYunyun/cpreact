@@ -1,4 +1,4 @@
-import * as _ from 'diana'
+import { isNumber, isString, isFunction } from 'diana'
 import { vdomToDom, setAttribute, setProps, renderComponent } from '../render'
 
 /**
@@ -8,15 +8,15 @@ import { vdomToDom, setAttribute, setProps, renderComponent } from '../render'
  * @returns {*} newDom
  */
 function diff(oldDom, newVdom) {
-  if (_.isNumber(newVdom)) {
+  if (isNumber(newVdom)) {
     newVdom = newVdom.toString() // 将数字转为字符串统一比较
   }
 
-  if (_.isString(newVdom)) {            // 如果是文本
+  if (isString(newVdom)) {            // 如果是文本
     return diffTextDom(oldDom, newVdom)
   }
 
-  if (_.isFunction(newVdom.nodeName)) { // 如果是自定义组件
+  if (isFunction(newVdom.nodeName)) { // 如果是自定义组件
     diffComponent(oldDom, newVdom)
     return oldDom
   }
@@ -158,13 +158,13 @@ function diffChild(oldDom, newVdom) {
  * @param {*} vdom
  */
 function isSameNodeType(dom, vdom) {
-  if ((_.isNumber(vdom) || _.isString(vdom))) { // 判断是否为文本类型
+  if ((isNumber(vdom) || isString(vdom))) { // 判断是否为文本类型
     return dom.nodeType === 3
   }
   if (dom.nodeName.toLowerCase() === vdom.nodeName) { // 判断非文本类型的 dom
     return true
   }
-  if (_.isFunction(vdom.nodeName)) { // 判断组件类型是否相同
+  if (isFunction(vdom.nodeName)) { // 判断组件类型是否相同
     return dom._component.constructor === vdom.nodeName
   }
   return false
