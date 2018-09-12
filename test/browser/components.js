@@ -1,6 +1,8 @@
 // import { h, cloneElement, render, rerender, Component } from '../../src/preact';
 import { render } from '../../src/render'
 import Component from '../../src/component'
+import cpreact from '../../src/index'
+
 /** @jsx h */
 
 // let spyAll = obj => Object.keys(obj).forEach(key => sinon.spy(obj, key));
@@ -46,16 +48,16 @@ describe('Components', () => {
   });
 
   it('should render components', () => {
-    class C1 extends Component {
-      constructor() {
-        super()
-      }
-      render() {
-        return <div>C1</div>;
-      }
-    }
+    // class C1 extends Component {
+    //   constructor() {
+    //     super()
+    //   }
+    //   render() {
+    //     return <div>C1</div>;
+    //   }
+    // }
     // sinon.spy(C1.prototype, 'render');
-    render(<C1 />, scratch);
+    // render(<C1 />, scratch);
 
     // // expect(C1.prototype.render)
     // //   .to.have.been.calledOnce

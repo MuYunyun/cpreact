@@ -121,10 +121,12 @@ function vdomToDom(vdom) {
  * @param {*} value
  */
 function setAttribute(dom, attr, value) {
-  if (attr === 'className') {
-    attr = 'class'
-  }
-  if (attr.match(/on\w+/)) {        // 处理事件的属性:
+  if (attr === 'className') { attr = 'class' }
+  if (attr === 'htmlFor') { attr = 'for' }
+  if (attr === 'disabled' || attr === 'autofocus') {
+    if (value === false) { /* not handle */ }
+    else { dom.setAttribute(attr, true) }
+  } else if (attr.match(/on\w+/)) {        // 处理事件的属性:
     let eventName = attr.toLowerCase().substr(2)
     if (eventName === 'change') { eventName = 'input' } // https://github.com/MuYunyun/blog/blob/master/从0到1实现React/9.onChange事件的那点事.md
     dom.addEventListener(eventName, value)
