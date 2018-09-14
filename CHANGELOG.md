@@ -9,18 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Feat
 
-* 增加 defaultProps
+* 增加 [defaultProps](https://github.com/MuYunyun/cpreact/commit/242b7f29106ca947a5039ddbfa68036b0524a582#diff-855b05ea6fe92e5b91d6da40f15dae9fL33)
 
 ### Fix
 
-* 修复 htmlFor/disabled/autofocus 未生效
+* 修复 [htmlFor/disabled/autofocus](https://github.com/MuYunyun/cpreact/commit/43ebe0f5d800fce80a73e61ac2daa5c0b036fbda) 未生效
 
 ## [0.4.3] 2018-9-11
 
 ### Changed
 
 * 用 input 事件同步 onChange 事件(与 React 同步)
-* 使用 Webpack 替代 Parcel(社区更广)
+* 使用 Webpack 替代 Parcel(parcel 热更新有 bug)
 * 按需加载 diana，打包体积从 28 kb 缩小为 9 kb
 
 ## [0.4.1](https://github.com/MuYunyun/cpreact/releases/tag/v0.4.1) 2018-8-27

@@ -132,7 +132,7 @@ function setAttribute(dom, attr, value) {
   } else if (attr.match(/on\w+/)) {        // 处理事件的属性:
     let eventName = attr.toLowerCase().substr(2)
     if (eventName === 'change') { eventName = 'input' } // https://github.com/MuYunyun/blog/blob/master/从0到1实现React/9.onChange事件的那点事.md
-    dom.addEventListener(eventName, value)
+    dom.addEventListener(eventName, value.bind(this)) // https://github.com/MuYunyun/cpreact/issues/4
   } else if (attr === 'style') {    // 处理样式的属性:
     let styleStr = ''
     let standardCss
