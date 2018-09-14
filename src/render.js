@@ -31,6 +31,9 @@ function createComponent(vdom) {
       return vdom.nodeName(vdom.attributes)
     }
   }
+  if (vdom.nodeName.defaultProps) { // 是否具有 defaultProps 属性
+    component.props = Object.assign({}, vdom.nodeName.defaultProps, component.props)
+  }
   return component
 }
 

@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Feat
+
+* 增加 defaultProps
+
 ### Fix
 
-* 兼容 htmlFor 属性
-* 修复 disabled/autofocus 未生效
+* 修复 htmlFor/disabled/autofocus 未生效
 
 ## [0.4.3] 2018-9-11
 
