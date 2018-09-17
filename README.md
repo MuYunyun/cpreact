@@ -29,7 +29,7 @@ yarn install
 yarn start
 ```
 
-执行完上述命令后，浏览器会自动打开并在 `localhost:8080` 上展示 `hello,cpreact`。
+执行完上述命令后，浏览器会自动打开并在 `localhost:8080` 上展示 `hello,cpreact`。~~也可以在 [沙盒](https://codesandbox.io/s/0xk1r2zmk0) 中使用~~
 
 ![](http://oqhtscus0.bkt.clouddn.com/4b7cca0d7176545b5556b54c77200595.jpg-200)
 

@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Feat
 
+* 受控组件
+
+## [0.5.0] 2018-9-15
+
+### Feat
+
 * 增加 [defaultProps](https://github.com/MuYunyun/cpreact/commit/242b7f29106ca947a5039ddbfa68036b0524a582#diff-855b05ea6fe92e5b91d6da40f15dae9fL33)
 
 ### Fix

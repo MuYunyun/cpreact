@@ -4,7 +4,7 @@ const path = require('path')
 const rootPath = path.resolve(__dirname, '../')
 
 webpack({
-  entry: path.resolve(rootPath, 'test', 'index.js'),
+  entry: path.resolve(rootPath, 'src', 'index.js'),
   mode: 'production',
   output: {
     filename: 'cpreact.js',

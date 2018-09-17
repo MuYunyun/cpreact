@@ -9,7 +9,7 @@ const cpreact = {
 
 const ReactDOM = {
   render(vdom, container) {
-    container.innerHTML = null // 在热更新之前清空之前的 dom 元素
+    container && (container.innerHTML = null) // 在热更新之前清空之前的 dom 元素
     render(vdom, container)
   }
 }

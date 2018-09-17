@@ -6,13 +6,13 @@ const rootPath = path.resolve(__dirname)
 module.exports = {
   entry: path.resolve(rootPath, 'test', 'index.js'),
   mode: 'development',
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-source-map',
   devServer: {
-    contentBase: './dist'
+    contentBase: './public'
   },
   output: {
     filename: 'cpreact.js',
-    path: path.resolve(rootPath, 'dist'),
+    path: path.resolve(rootPath, 'public'),
     libraryTarget: 'umd'
   },
   module: {
