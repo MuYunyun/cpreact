@@ -18,9 +18,9 @@
 - [x] [9.onChange 事件以及受控组件](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/9.onChange事件以及受控组件.md)
 - [ ] 未完待续
 
-> 与章节对应的代码可以在 [更新日志](https://github.com/MuYunyun/cpreact/blob/master/CHANGELOG.md) 下载。
+> 与章节对应的代码可以在 [更新日志](https://github.com/MuYunyun/cpreact/blob/master/CHANGELOG.md) 查阅。
 
-> 欢迎在相应的 [issue](https://github.com/MuYunyun/blog/issues/24) 里进行交流见解。
+> 可以在相应的 [issue](https://github.com/MuYunyun/blog/issues?q=is%3Aopen+is%3Aissue+label%3A%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0React%E7%B3%BB%E5%88%97) 里讨论相应章节内容。
 
 ### Usage
 

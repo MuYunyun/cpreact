@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.5.2] 2018-9-18
+## [0.5.2](https://github.com/MuYunyun/cpreact/tree/v0.5.2) 2018-9-18
 
 ### Feat
 
@@ -31,13 +31,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * 使用 Webpack 替代 Parcel(parcel 热更新有 bug)
 * 按需加载 diana，打包体积从 28 kb 缩小为 9 kb
 
-## [0.4.1](https://github.com/MuYunyun/cpreact/releases/tag/v0.4.1) 2018-8-27
+## [0.4.1](https://github.com/MuYunyun/cpreact/tree/v0.4.1) 2018-8-27
 
 ### Feature
 
 * do reasearch in HOC
 
-## [0.4.0](https://github.com/MuYunyun/cpreact/releases/tag/v0.4) 2018-8-5
+## [0.4.0](https://github.com/MuYunyun/cpreact/tree/v0.4) 2018-8-5
 
 ### Feature
 
@@ -48,21 +48,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * SetState 修改为异步调用
 
-## [0.3.0](https://github.com/MuYunyun/cpreact/releases/tag/v0.3) 2018-7-27
+## [0.3.0](https://github.com/MuYunyun/cpreact/tree/v0.3) 2018-7-27
 
 ### Feature
 
 * 实现生命周期
 * 实现 diff 算法
 
-## [0.2.0](https://github.com/MuYunyun/cpreact/releases/tag/v0.2) 2018-7-6
+## [0.2.0](https://github.com/MuYunyun/cpreact/tree/v0.2) 2018-7-6
 
 ### Feature
 
 * 实现 Components
 * 实现 State 和 Props
 
-## [0.1.0](https://github.com/MuYunyun/cpreact/releases/tag/0.1) 2018-7-6
+## [0.1.0](https://github.com/MuYunyun/cpreact/tree/0.1) 2018-7-6
 
 ### Feature
 
