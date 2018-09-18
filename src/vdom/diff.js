@@ -97,6 +97,7 @@ function diffAttribute(oldDom, newVdom) {
 
   for (const attr in newVdom.attributes) {
     if (oldObj[attr] && oldObj[attr] !== newVdom.attributes[attr].toString()) {
+      if (attr === 'value') { oldDom.value = newVdom.attributes[attr] } // 受控组件里调整值的关键语句
       setAttribute(oldDom, attr, newVdom.attributes[attr])
     }
   }

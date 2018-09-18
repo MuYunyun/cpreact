@@ -117,12 +117,22 @@ function vdomToDom(vdom) {
       const oldValue = dom.value
       const changeCb = vdom.attributes['onChange']
       dom.addEventListener('input', (e) => {
-        changeCb.call(this, e)  // 目前卡在这个 e.target.value 暴露出去了
-        dom.value = oldValue    // 但是这一句让 diff 属性判断 diffAttribute 前后值会相等，待解决xxxxxxxxxx
+        changeCb.call(this, e)
+        dom.value = oldValue
       })
       delete vdom.attributes['onChange']
       delete vdom.attributes['value']
     }
+  if (vdom.attributes
+    && !vdom.attributes.hasOwnProperty('onChange')
+    && vdom.attributes.hasOwnProperty('value')) { // 受控组件逻辑
+    dom.setAttribute('value', vdom.attributes['value'])
+    const oldValue = dom.value
+    dom.addEventListener('input', (e) => {
+      dom.value = oldValue
+    })
+    delete vdom.attributes['value']
+  }
   for (const attr in vdom.attributes) {
     setAttribute(dom, attr, vdom.attributes[attr])
   }
