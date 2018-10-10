@@ -16,10 +16,12 @@ PureComponent.prototype.setState = function(updater, cb) {
 }
 
 function isShouldComponentUpdate() {
-  const cpState = this.state
-  const cpProps = this.props
-  this.shouldComponentUpdate = function (nextProps, nextState) {
+  let cpState = this.state
+  let cpProps = this.props
+  this.shouldComponentUpdate = function(nextProps, nextState) {
     if (!shallowEqual(cpState, nextState) || !shallowEqual(cpProps, nextProps)) {
+      cpProps = nextProps // 同步 cpProps/cpState，此时重新渲染的时候不会执行不必要的渲染
+      cpState = nextState
       return true  // 只要 state 或 props 浅比较不等的话，就进行渲染
     } else {
       return false // 浅比较相等的话，不渲染
@@ -28,7 +30,7 @@ function isShouldComponentUpdate() {
 }
 
 // force to update
-PureComponent.prototype.forceUpdate = function (cb) {
+PureComponent.prototype.forceUpdate = function(cb) {
   this.allowShouldComponentUpdate = false
   asyncRender({}, this, cb)
 }

@@ -1,4 +1,4 @@
-import { isNumber, isString, isFunction } from 'diana'
+import { isNumber, isString, isFunction, isArray } from 'diana'
 import { vdomToDom, setAttribute, setProps, renderComponent } from '../render'
 
 /**
@@ -130,7 +130,11 @@ function diffChild(oldDom, newVdom) {
     }
   }
 
-  const newChildNodes = newVdom.children
+  let newChildNodes = newVdom.children
+  if (isArray(newVdom.children[0])) { // https://github.com/MuYunyun/cpreact/issues/9
+    newChildNodes = newVdom.children[0]
+  }
+
   for (let i = 0; i < newChildNodes.length; i++) {
     let child = null
     if (keyed[newChildNodes[i].key]) {

@@ -142,7 +142,7 @@ function vdomToDom(vdom) {
       vdomChild.forEach(vdomChild2 => {
         render(vdomChild2, dom)
       })
-    } {
+    } else {
       render(vdomChild, dom)
     }
   })

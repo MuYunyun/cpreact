@@ -33,11 +33,11 @@ yarn start
 
 ![](http://oqhtscus0.bkt.clouddn.com/4b7cca0d7176545b5556b54c77200595.jpg-200)
 
-### Useful Demos
+### Practice
 
-[踩坑日志](https://github.com/MuYunyun/cpreact/issues?q=is%3Aissue+%E8%B8%A9%E5%9D%91+is%3Aclosed)
-
-[常见的测试用例](https://github.com/MuYunyun/cpreact/issues/5)
+* [踩坑日志](https://github.com/MuYunyun/cpreact/issues?q=is%3Aissue+%E8%B8%A9%E5%9D%91+is%3Aclosed)
+* [常见的测试用例](https://github.com/MuYunyun/cpreact/issues/5)
+* [性能优化实践之 —— 使用 why-did-you-update](https://github.com/demos-platform/why-did-you-update)
 
 ### Contribution
 

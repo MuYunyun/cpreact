@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fix
 
-* 受控组件相关错误
+* 修复使用 PureComponent 依然执行不必要的渲染
+* 修复 [JSX 解析错误](https://github.com/MuYunyun/cpreact/issues/9)
 
 ## [0.5.2](https://github.com/MuYunyun/cpreact/tree/v0.5.2) 2018-9-18
 
