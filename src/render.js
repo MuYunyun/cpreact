@@ -1,4 +1,4 @@
-import { isFunction, isNumber, isString } from 'diana'
+import { isFunction, isNumber, isString, isArray } from 'diana'
 import { diff } from './vdom/diff'
 import { humpToStandard, defer } from './util'
 
@@ -136,7 +136,16 @@ function vdomToDom(vdom) {
   for (const attr in vdom.attributes) {
     setAttribute(dom, attr, vdom.attributes[attr])
   }
-  vdom.children.forEach(vdomChild => render(vdomChild, dom))
+
+  vdom.children && vdom.children.forEach(vdomChild => {
+    if (isArray(vdomChild)) { // https://github.com/MuYunyun/cpreact/issues/9
+      vdomChild.forEach(vdomChild2 => {
+        render(vdomChild2, dom)
+      })
+    } {
+      render(vdomChild, dom)
+    }
+  })
   return dom
 }
 

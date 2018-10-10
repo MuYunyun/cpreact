@@ -8,6 +8,10 @@ import { vdomToDom, setAttribute, setProps, renderComponent } from '../render'
  * @returns {*} newDom
  */
 function diff(oldDom, newVdom) {
+  if (oldDom === null) {
+    return newVdom
+  }
+
   if (isNumber(newVdom)) {
     newVdom = newVdom.toString() // 将数字转为字符串统一比较
   }
@@ -96,7 +100,7 @@ function diffAttribute(oldDom, newVdom) {
   }
 
   for (const attr in newVdom.attributes) {
-    if (oldObj[attr] && oldObj[attr] !== newVdom.attributes[attr].toString()) {
+    if (oldObj.hasOwnProperty(attr) && oldObj[attr] !== newVdom.attributes[attr].toString()) {
       if (attr === 'value') { oldDom.value = newVdom.attributes[attr] } // 受控组件里调整值的关键语句
       setAttribute(oldDom, attr, newVdom.attributes[attr])
     }
@@ -110,7 +114,7 @@ function diffAttribute(oldDom, newVdom) {
 }
 
 /**
- * 对比子节点
+ * 对比子节点，新一轮计划开启。
  * @param {*} oldDom
  * @param {*} newVdom
  */
@@ -127,29 +131,24 @@ function diffChild(oldDom, newVdom) {
   }
 
   const newChildNodes = newVdom.children
-  let child
   for (let i = 0; i < newChildNodes.length; i++) {
+    let child = null
     if (keyed[newChildNodes[i].key]) {
       child = keyed[newChildNodes[i].key]
       keyed[newChildNodes[i].key] = undefined
     } else { // 对应上面不存在 key 的情形
-      for (let j = 0; j < children.length; j++) {
-        if (isSameNodeType(children[i], newChildNodes[i])) {
-          child = children[i]
-          children[i] = undefined
-          break
-        }
+      // 这里实现得有点问题，优先寻找；改为相同类型的进行 diff，不同类型的直接替换掉；
+      if (children[i] && isSameNodeType(children[i], newChildNodes[i])) {
+        child = children[i]
+        children[i] = undefined
       }
     }
-    diff(child, newChildNodes[i])
-    // child = diff(child, newChildNodes[i])
-    // 更新
-    // const f = oldChildNodes[i]
-    // if (child && child !== oldDom) {
-    //   if (!f) {
-    //     oldDom.appendChild(child)
-    //   }
-    // }
+
+    const result = diff(child, newChildNodes[i])
+    // 如果 child 为 null（不是相同类型，直接替代掉）
+    if (result === newChildNodes[i]) {
+      oldDom.appendChild(vdomToDom(result))
+    }
   }
 }
 

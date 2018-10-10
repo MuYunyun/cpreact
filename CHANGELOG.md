@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fix
+
+* 受控组件相关错误
+
 ## [0.5.2](https://github.com/MuYunyun/cpreact/tree/v0.5.2) 2018-9-18
 
 ### Feat
