@@ -145,11 +145,14 @@ function diffChild(oldDom, newVdom) {
       if (children[i] && isSameNodeType(children[i], newChildNodes[i])) {
         child = children[i]
         children[i] = undefined
+      } else if (children[i] && !isSameNodeType(children[i], newChildNodes[i])) { // 不是相同类型，直接替代掉
+        children[i].replaceWith(newChildNodes[i])
+        continue
       }
     }
 
     const result = diff(child, newChildNodes[i])
-    // 如果 child 为 null（不是相同类型，直接替代掉）
+    // 如果 child 为 null
     if (result === newChildNodes[i]) {
       oldDom.appendChild(vdomToDom(result))
     }
