@@ -39,6 +39,10 @@ yarn start
 * [常见的测试用例](https://github.com/MuYunyun/cpreact/issues/5)
 * [性能优化实践之 —— 使用 why-did-you-update](https://github.com/demos-platform/why-did-you-update)
 
+### tip
+
+* [不要用数组的 index 作 key 值](https://github.com/MuYunyun/cpreact)
+
 ### Contribution
 
 If you want to contrubute this proj, you can read [how to pr](https://github.com/MuYunyun/cpreact/blob/master/.github/PULL_REQUEST_TEMPLATE.md).

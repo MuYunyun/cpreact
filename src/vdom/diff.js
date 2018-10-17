@@ -141,7 +141,7 @@ function diffChild(oldDom, newVdom) {
       child = keyed[newChildNodes[i].key]
       keyed[newChildNodes[i].key] = undefined
     } else { // 对应上面不存在 key 的情形
-      // 这里实现得有点问题，优先寻找；改为相同类型的进行 diff，不同类型的直接替换掉；
+      // 在新老节点相同位置上寻找相同类型的节点进行比较；如果不满足上述条件则直接将新节点插入；
       if (children[i] && isSameNodeType(children[i], newChildNodes[i])) {
         child = children[i]
         children[i] = undefined

@@ -7,8 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.3](https://github.com/MuYunyun/cpreact/tree/v0.5.3) 2018-10-17
+
 ### Fix
 
+* 修复 diff 算法的 bug
 * 修复使用 PureComponent 依然执行不必要的渲染
 * 修复 [JSX 解析错误](https://github.com/MuYunyun/cpreact/issues/9)
 
