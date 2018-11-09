@@ -4,6 +4,11 @@
 
 [![npm version](https://badge.fury.io/js/cpreact.svg)](https://badge.fury.io/js/cpreact) ![LICENSE MIT](https://img.shields.io/npm/l/cpreact.svg)
 
+### Phisolophy
+
+* React 如酒酿
+* 复现 React 的轴心
+
 ### Implement React from 0 to 1
 
 - [x] [0.前置准备](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/0.前置准备.md)
@@ -17,6 +22,7 @@
 - [x] [8.HOC 探索](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/8.HOC探索.md)
 - [x] [9.onChange 事件以及受控组件](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/9.onChange事件以及受控组件.md)
 - [ ] 未完待续
+- [ ] 测试之旅
 
 > 与章节对应的代码可以在 [更新日志](https://github.com/MuYunyun/cpreact/blob/master/CHANGELOG.md) 查阅。
 

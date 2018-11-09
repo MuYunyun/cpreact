@@ -96,7 +96,7 @@ function renderComponent(component) {
 function vdomToDom(vdom) {
   if (isFunction(vdom.nodeName)) { // 为了更加方便地书写生命周期逻辑，将自定义组件逻辑和一般 html 标签的逻辑分离开
     const component = createComponent(vdom)
-    setProps(component)
+    vdom.attributes ? setProps(component, vdom.attributes) : setProps(component)
     for (const attr in vdom.attributes) { // 处理自定义组件的 ref 属性
       if (attr === 'ref' && isFunction(vdom.attributes[attr])) {
         vdom.attributes[attr](component)
@@ -107,7 +107,7 @@ function vdomToDom(vdom) {
   }
   if (isString(vdom) || isNumber(vdom)) {
     const textNode = document.createTextNode(vdom)
-    return textNode // 待测验 <div>I'm {this.props.name}</div>
+    return textNode
   }
   const dom = document.createElement(vdom.nodeName)
   if (vdom.attributes
