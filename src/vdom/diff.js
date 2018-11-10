@@ -81,7 +81,15 @@ function diffComponent(oldDom, newVdom) {
  * @param {*} newVdom
  */
 function diffNotTextDom(oldDom, newVdom) {
-  const newDom = document.createElement(newVdom.nodeName);
+  let newDom
+  if (newDom.nodeName === 'svg' || newDom.isSVGElement) { // 这一段代码没经过测试用例跑过, 见 https://github.com/MuYunyun/cpreact/issues/7
+    dom = document.createElementNS('http://www.w3.org/2000/svg', newDom.nodeName)
+    for (let i = 0; i < newDom.children.length; i++) {
+      newDom.children[i].isSVGElement = true
+    }
+  } else {
+    newDom = document.createElement(newVdom.nodeName)
+  }
   [...oldDom.childNodes].map(newDom.appendChild)
   if (oldDom && oldDom.parentNode) {
     oldDom.parentNode.replaceChild(oldDom, newDom)

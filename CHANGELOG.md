@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Feat
+
+* [支持 SVG](https://github.com/MuYunyun/cpreact/issues/7)
+
+### Fix
+
+* 修复 props 在组件间传递间丢失
+
 ## [0.5.3](https://github.com/MuYunyun/cpreact/tree/v0.5.3) 2018-10-17
 
 ### Fix

@@ -10,36 +10,12 @@ import cpreact, { Component, ReactDOM, PureComponent } from '../src/index'
 //   }
 // }
 
-class PassState extends Component {
-  constructor() {
-    super()
-    this.state = { name: 'muyy' }
-  }
-
-  render() {
-    return (
-      <div>
-        {this.props.render(this.state)}
-      </div>
-    )
-  }
-}
-
-class UseState extends Component {
-  render() {
-    const { state } = this.props
-    return (<div>
-      {state.name}
-    </div>)
-  }
-}
-
 class App extends Component {
   render() {
     return (
-      <PassState render={(state) => (
-        <UseState state={state} />
-      )} />
+      <svg>
+        <circle cx={20} cy={20} r={20} fill='blue' />
+      </svg>
     )
   }
 }

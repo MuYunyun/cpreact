@@ -109,7 +109,15 @@ function vdomToDom(vdom) {
     const textNode = document.createTextNode(vdom)
     return textNode
   }
-  const dom = document.createElement(vdom.nodeName)
+  let dom
+  if (vdom.nodeName === 'svg' || vdom.isSVGElement) { // 见 https://github.com/MuYunyun/cpreact/issues/7
+    dom = document.createElementNS('http://www.w3.org/2000/svg', vdom.nodeName)
+    for (let i = 0; i < vdom.children.length; i++) {
+      vdom.children[i].isSVGElement = true
+    }
+  } else {
+    dom = document.createElement(vdom.nodeName)
+  }
   if (vdom.attributes
     && vdom.attributes.hasOwnProperty('onChange')
     && vdom.attributes.hasOwnProperty('value')) { // 受控组件逻辑，`onChange` 的 input 事件绑定优先于 `value` 的 input 事件绑定
