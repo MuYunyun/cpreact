@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.4](https://github.com/MuYunyun/cpreact/tree/v0.5.4) 2018-11-11
+
 ### Feat
 
 * [支持 SVG](https://github.com/MuYunyun/cpreact/issues/7)
+* babel 升级到 7，测试文件支持[类静态属性](https://github.com/tc39/proposal-class-fields)
 
 ### Fix
 

@@ -42,13 +42,10 @@ yarn start
 
 ### Practice
 
-* [踩坑日志](https://github.com/MuYunyun/cpreact/issues?q=is%3Aissue+%E8%B8%A9%E5%9D%91+is%3Aclosed)
+* [踩坑日志](https://github.com/MuYunyun/cpreact/issues?utf8=✓&q=label%3A"踩坑日志")
+* [小贴士](https://github.com/MuYunyun/cpreact/issues?utf8=✓&q=label%3A"tip")
 * [常见的测试用例](https://github.com/MuYunyun/cpreact/issues/5)
 * [性能优化实践之 —— 使用 why-did-you-update](https://github.com/demos-platform/why-did-you-update)
-
-### tip
-
-* [不要用数组的 index 作 key 值](https://github.com/MuYunyun/cpreact)
 
 ### Contribution
 
@@ -56,4 +53,4 @@ If you want to contrubute this proj, you can read [how to pr](https://github.com
 
 ### Thanks
 
-Especially thank [simple-react](https://github.com/hujiulong/simple-react) for the guidance function of this library. At the meantime，respect for [preact](https://github.com/developit/preact) and [react](https://github.com/facebook/react)
+Especially thank [simple-react](https://github.com/hujiulong/simple-react) for the guidance function of this library. At the meantime, respect for [preact](https://github.com/developit/preact) and [react](https://github.com/facebook/react)

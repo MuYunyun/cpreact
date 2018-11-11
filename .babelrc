@@ -1,17 +1,37 @@
 {
-    "presets": ["env"],
-    "plugins": [
-        ["transform-react-jsx", {
-            "pragma": "cpreact.createElement"
-        }],
-        [
-            "transform-decorators-legacy"
-        ],
-        [
-            "on-demand-loading",
-            {
-                "library": "diana"
-            }
-        ]
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": "> 0.25%, not dead",
+        "useBuiltIns": "entry"
+      }
+    ],
+    [
+      "@babel/preset-react",
+      {
+        "pragma": "cpreact.createElement"
+      }
     ]
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ],
+    [
+      "on-demand-loading",
+      {
+        "library": "diana"
+      }
+    ]
+  ]
 }
