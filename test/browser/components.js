@@ -3,8 +3,6 @@ import { render } from '../../src/render'
 import Component from '../../src/component'
 import cpreact from '../../src/index'
 
-/** @jsx h */
-
 // let spyAll = obj => Object.keys(obj).forEach(key => sinon.spy(obj, key));
 
 // function getAttributes(node) {
@@ -26,21 +24,21 @@ import cpreact from '../../src/index'
 //   });
 // }
 
-// const Empty = () => null;
+const Empty = () => null;
 
 describe('Components', () => {
-  let scratch;
+  let scratch
 
   before(() => {
     scratch = document.createElement('div');
-    (document.body || document.documentElement).appendChild(scratch);
-  });
+    (document.body || document.documentElement).appendChild(scratch)
+  })
 
   beforeEach(() => {
-    // let c = scratch.firstElementChild;
-    // if (c) render(<Empty />, scratch, c);
-    scratch.innerHTML = '';
-  });
+    let c = scratch.firstElementChild
+    if (c) render(<Empty />, scratch, c)
+    scratch.innerHTML = ''
+  })
 
   after(() => {
     scratch.parentNode.removeChild(scratch);
@@ -59,13 +57,13 @@ describe('Components', () => {
     // sinon.spy(C1.prototype, 'render');
     // render(<C1 />, scratch);
 
-    // // expect(C1.prototype.render)
-    // //   .to.have.been.calledOnce
-    // //   .and.to.have.been.calledWithMatch({}, {})
-    // //   .and.to.have.returned(sinon.match({ nodeName: 'div' }));
+    // expect(C1.prototype.render)
+    //   .to.have.been.calledOnce
+    //   .and.to.have.been.calledWithMatch({}, {})
+    //   .and.to.have.returned(sinon.match({ nodeName: 'div' }));
 
     // expect(scratch.innerHTML).to.equal('<div>C1</div>');
-  });
+  })
 
   // it('should render functional components', () => {
   //   const PROPS = { foo: 'bar', onBaz: () => { } };

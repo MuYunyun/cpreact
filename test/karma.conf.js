@@ -56,6 +56,7 @@ var localLaunchers = {
 };
 
 module.exports = function (config) {
+  console.log('1234',process.env.CHROME_BIN);
   config.set({
     browsers: sauceLabs
       ? Object.keys(sauceLabsLaunchers)
@@ -102,7 +103,6 @@ module.exports = function (config) {
     customLaunchers: sauceLabs ? sauceLabsLaunchers : localLaunchers,
 
     files: [
-      { pattern: 'polyfills.js', watched: false },
       { pattern: '{browser,shared}/**.js', watched: false }
     ],
 
@@ -118,7 +118,7 @@ module.exports = function (config) {
         rules: [
           {
             enforce: 'pre',
-            test: /\.jsx?$/,
+            test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel-loader',
             options: {
@@ -128,7 +128,7 @@ module.exports = function (config) {
           },
           /* Only Instrument our source files for coverage */
           coverage ? {
-            test: /\.jsx?$/,
+            test: /\.js$/,
             loader: 'istanbul-instrumenter-loader',
             include: /src/
           } : {}
@@ -157,5 +157,5 @@ module.exports = function (config) {
     webpackMiddleware: {
       noInfo: true
     }
-  });
-};
+  })
+}
