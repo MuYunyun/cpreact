@@ -6,9 +6,8 @@
 
 ### Phisolophy
 
-* React 如酒酿
-* 复现 React 的轴心
-* 反哺 DOM
+* React 如酒酿, 复现 React 的轴心
+* 反哺 DOM, 不考虑兼容低版本浏览器和 IE
 
 ### Implement React from 0 to 1
 
@@ -23,10 +22,9 @@
 * [8.HOC 探索](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/8.HOC探索.md)
 * [9.onChange 事件以及受控组件](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/9.onChange事件以及受控组件.md)
 
-- [ ] 测试之旅
-- [ ] 性能比对
+- [ ] 性能测试
 
-> [更新日志](https://github.com/MuYunyun/cpreact/blob/master/CHANGELOG.md) 以及相关 [issue](https://github.com/MuYunyun/blog/issues?q=is%3Aopen+is%3Aissue+label%3A%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0React%E7%B3%BB%E5%88%97)
+> [更新日志](https://github.com/MuYunyun/cpreact/blob/master/CHANGELOG.md); 相关 [issue](https://github.com/MuYunyun/blog/issues?q=is%3Aopen+is%3Aissue+label%3A%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0React%E7%B3%BB%E5%88%97)
 
 ### Usage
 
@@ -46,9 +44,21 @@ yarn start
 * [常见的测试用例](https://github.com/MuYunyun/cpreact/issues/5)
 * [性能优化实践之 —— 使用 why-did-you-update](https://github.com/demos-platform/why-did-you-update)
 
+### Test Travel
+
+```js
+yarn test
+```
+
+- [x] exports
+- [x] createElement
+- [ ] components
+- [ ] keys
+- [ ] lifecycle
+
 ### Contribution
 
-If you want to contrubute this proj, you can read [how to pr](https://github.com/MuYunyun/cpreact/blob/master/.github/PULL_REQUEST_TEMPLATE.md).
+Welcome to contrubute this proj, you can read [how to pr](https://github.com/MuYunyun/cpreact/blob/master/.github/PULL_REQUEST_TEMPLATE.md).
 
 ### Thanks
 

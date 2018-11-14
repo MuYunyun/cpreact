@@ -1,7 +1,7 @@
 // import { h, cloneElement, render, rerender, Component } from '../../src/preact';
+import cpreact from '../../src/index'
 import { render } from '../../src/render'
 import Component from '../../src/component'
-import cpreact from '../../src/index'
 
 // let spyAll = obj => Object.keys(obj).forEach(key => sinon.spy(obj, key));
 
@@ -35,265 +35,211 @@ describe('Components', () => {
   })
 
   beforeEach(() => {
-    let c = scratch.firstElementChild
-    if (c) render(<Empty />, scratch, c)
     scratch.innerHTML = ''
   })
 
   after(() => {
     scratch.parentNode.removeChild(scratch);
     scratch = null;
-  });
-
-  it('should render components', () => {
-    // class C1 extends Component {
-    //   constructor() {
-    //     super()
-    //   }
-    //   render() {
-    //     return <div>C1</div>;
-    //   }
-    // }
-    // sinon.spy(C1.prototype, 'render');
-    // render(<C1 />, scratch);
-
-    // expect(C1.prototype.render)
-    //   .to.have.been.calledOnce
-    //   .and.to.have.been.calledWithMatch({}, {})
-    //   .and.to.have.returned(sinon.match({ nodeName: 'div' }));
-
-    // expect(scratch.innerHTML).to.equal('<div>C1</div>');
   })
 
-  // it('should render functional components', () => {
-  //   const PROPS = { foo: 'bar', onBaz: () => { } };
+  it('should render components', () => {
+    class C1 extends Component {
+      constructor() {
+        super()
+      }
+      render() {
+        return <div>C1</div>;
+      }
+    }
+    sinon.spy(C1.prototype, 'render')
+    render(<C1 />, scratch)
 
-  //   const C3 = sinon.spy(props => <div {...props} />);
+    expect(C1.prototype.render)
+      .to.have.been.calledOnce
+      .and.to.have.returned(sinon.match({ nodeName: 'div' }))
 
-  //   render(<C3 {...PROPS} />, scratch);
+    expect(scratch.innerHTML).to.equal('<div>C1</div>')
+  })
 
-  //   expect(C3)
-  //     .to.have.been.calledOnce
-  //     .and.to.have.been.calledWithMatch(PROPS)
-  //     .and.to.have.returned(sinon.match({
-  //       nodeName: 'div',
-  //       attributes: PROPS
-  //     }));
+  it('should render functional components', () => {
+    const PROPS = { foo: 'bar' }
 
-  //   expect(scratch.innerHTML).to.equal('<div foo="bar"></div>');
-  // });
+    const C3 = sinon.spy(props => <div {...props} />)
 
+    render(<C3 {...PROPS} />, scratch)
 
-  // it('should render components with props', () => {
-  //   const PROPS = { foo: 'bar', onBaz: () => { } };
-  //   let constructorProps;
+    expect(C3)
+      .to.have.been.calledOnce
+      .and.to.have.been.calledWithMatch(PROPS)
+      .and.to.have.returned(sinon.match({
+        nodeName: 'div',
+        attributes: PROPS
+      }))
 
-  //   class C2 extends Component {
-  //     constructor(props) {
-  //       super(props);
-  //       constructorProps = props;
-  //     }
-  //     render(props) {
-  //       return <div {...props} />;
-  //     }
-  //   }
-  //   sinon.spy(C2.prototype, 'render');
+    expect(scratch.innerHTML).to.equal('<div foo="bar"></div>')
+  })
 
-  //   render(<C2 {...PROPS} />, scratch);
+  it('should render components with props', () => {
+    const PROPS = { foo: 'bar' }
+    let constructorProps
 
-  //   expect(constructorProps).to.deep.equal(PROPS);
+    class C2 extends Component {
+      constructor(props) {
+        super(props)
+        constructorProps = props
+      }
+      render() {
+        return <div {...this.props} />
+      }
+    }
+    sinon.spy(C2.prototype, 'render')
 
-  //   expect(C2.prototype.render)
-  //     .to.have.been.calledOnce
-  //     .and.to.have.been.calledWithMatch(PROPS, {})
-  //     .and.to.have.returned(sinon.match({
-  //       nodeName: 'div',
-  //       attributes: PROPS
-  //     }));
+    render(<C2 {...PROPS} />, scratch)
 
-  //   expect(scratch.innerHTML).to.equal('<div foo="bar"></div>');
-  // });
+    expect(constructorProps).to.deep.equal(PROPS)
 
+    expect(C2.prototype.render)
+      .to.have.been.calledOnce
+      .and.to.have.returned(sinon.match({
+        nodeName: 'div',
+        attributes: PROPS
+      }))
 
+    expect(scratch.innerHTML).to.equal('<div foo="bar"></div>')
+  })
+
+  // to realize cloneElement
   // it('should clone components', () => {
   //   function Comp() { }
-  //   let instance = <Comp />;
-  //   let clone = cloneElement(instance);
-  //   expect(clone.prototype).to.equal(instance.prototype);
-  // });
+  //   let instance = <Comp />
+  //   let clone = cloneElement(instance)
+  //   expect(clone.prototype).to.equal(instance.prototype)
+  // })
 
-  // it('should render string', () => {
-  //   class StringComponent extends Component {
-  //     render() {
-  //       return "Hi there";
-  //     }
-  //   }
+  it('should render string', () => {
+    class StringComponent extends Component {
+      render() {
+        return "Hi there";
+      }
+    }
 
-  //   render(<StringComponent />, scratch);
-  //   expect(scratch.innerHTML).to.equal('Hi there');
-  // });
+    render(<StringComponent />, scratch);
+    expect(scratch.innerHTML).to.equal('Hi there');
+  })
 
-  // it('should render number as string', () => {
-  //   class NumberComponent extends Component {
-  //     render() {
-  //       return 42;
-  //     }
-  //   }
+  it('should render number as string', () => {
+    class NumberComponent extends Component {
+      render() {
+        return 42
+      }
+    }
 
-  //   render(<NumberComponent />, scratch);
-  //   expect(scratch.innerHTML).to.equal('42');
-  // });
+    render(<NumberComponent />, scratch)
+    expect(scratch.innerHTML).to.equal('42')
+  })
 
-  // it('should render null as empty string', () => {
-  //   class NullComponent extends Component {
-  //     render() {
-  //       return null;
-  //     }
-  //   }
+  it('should render null as empty string', () => {
+    class NullComponent extends Component {
+      render() {
+        return null
+      }
+    }
 
-  //   render(<NullComponent />, scratch);
-  //   expect(scratch.innerHTML).to.equal('');
-  // });
+    render(<NullComponent />, scratch)
+    expect(scratch.innerHTML).to.equal('')
+  })
 
-  // // Test for #651
-  // it('should set enumerable boolean attribute', () => {
-  //   render(<input spellcheck={false} />, scratch);
-  //   expect(scratch.firstChild.spellcheck).to.equal(false);
-  // });
+  it('should set enumerable boolean attribute', () => {
+    render(<input spellcheck={false} />, scratch)
+    expect(scratch.firstChild.spellcheck).to.equal(false)
+  })
 
-  // // Test for Issue #73
-  // it('should remove orphaned elements replaced by Components', () => {
-  //   class Comp extends Component {
-  //     render() {
-  //       return <span>span in a component</span>;
-  //     }
-  //   }
+  // Test for Issue #254, 目前只写了 html 元素的 key 比较，观望组件间的 key 是否要写进 diff 算法
+  it('should not recycle common class children with different keys', (done) => {
+    let idx = 0
+    let msgs = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+    let sideEffect = sinon.spy()
 
-  //   let root;
-  //   function test(content) {
-  //     root = render(content, scratch, root);
-  //   }
+    class Comp extends Component {
+      componentWillMount() {
+        this.innerMsg = msgs[(idx++ % 8)]
+        sideEffect()
+      }
+      render() {
+        return <div>{this.innerMsg}</div>
+      }
+    }
+    sinon.spy(Comp.prototype, 'componentWillMount')
 
-  //   test(<Comp />);
-  //   test(<div>just a div</div>);
-  //   test(<Comp />);
+    class GoodContainer extends Component {
+      constructor(props) {
+        super(props)
+        this.state.alt = false
+      }
 
-  //   expect(scratch.innerHTML).to.equal('<span>span in a component</span>');
-  // });
+      render() {
+        const { alt } = this.state
+        return (
+          <div>
+            {alt ? null : (<Comp key={1} alt={alt} />)}
+            {alt ? null : (<Comp key={2} alt={alt} />)}
+            {alt ? (<Comp key={3} alt={alt} />) : null}
+          </div>
+        )
+      }
+    }
 
+    class BadContainer extends Component {
+      constructor(props) {
+        super(props)
+        this.state.alt = false
+      }
 
-  // // Test for Issue #176
-  // it('should remove children when root changes to text node', () => {
-  //   let comp;
+      render() {
+        const { alt } = this.state
+        return (
+          <div>
+            {alt ? null : (<Comp alt={alt} />)}
+            {alt ? null : (<Comp alt={alt} />)}
+            {alt ? (<Comp alt={alt} />) : null}
+          </div>
+        )
+      }
+    }
 
-  //   class Comp extends Component {
-  //     render(_, { alt }) {
-  //       return alt ? 'asdf' : <div>test</div>;
-  //     }
-  //   }
+    let good, bad
+    let root = render(<GoodContainer ref={c => good = c} />, scratch)
+    expect(scratch.textContent, 'new component with key present').to.equal('AB')
+    expect(Comp.prototype.componentWillMount).to.have.been.calledTwice
+    expect(sideEffect).to.have.been.calledTwice
 
-  //   render(<Comp ref={c => comp = c} />, scratch);
+    sideEffect.resetHistory()
+    Comp.prototype.componentWillMount.resetHistory()
+    good.setState({ alt: true })
+    setTimeout(function () {
+      expect(scratch.textContent, 'new component with key present re-rendered').to.equal('C')
+      //we are recycling the first 2 components already rendered, just need a new one
+      expect(Comp.prototype.componentWillMount).to.have.been.calledOnce
+      expect(sideEffect).to.have.been.calledOnce
+      done()
+    }, 0)
 
-  //   comp.setState({ alt: true });
-  //   comp.forceUpdate();
-  //   expect(scratch.innerHTML, 'switching to textnode').to.equal('asdf');
+    // sideEffect.resetHistory()
+    // Comp.prototype.componentWillMount.resetHistory()
+    // render(<BadContainer ref={c => bad = c} />, scratch)
+    // expect(scratch.textContent, 'new component without key').to.equal('DE')
+    // expect(Comp.prototype.componentWillMount).to.have.been.calledTwice
+    // expect(sideEffect).to.have.been.calledTwice
 
-  //   comp.setState({ alt: false });
-  //   comp.forceUpdate();
-  //   expect(scratch.innerHTML, 'switching to element').to.equal('<div>test</div>');
-
-  //   comp.setState({ alt: true });
-  //   comp.forceUpdate();
-  //   expect(scratch.innerHTML, 'switching to textnode 2').to.equal('asdf');
-  // });
-
-  // // Test for Issue #254
-  // it('should not recycle common class children with different keys', () => {
-  //   let idx = 0;
-  //   let msgs = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-  //   let sideEffect = sinon.spy();
-
-  //   class Comp extends Component {
-  //     componentWillMount() {
-  //       this.innerMsg = msgs[(idx++ % 8)];
-  //       sideEffect();
-  //     }
-  //     render() {
-  //       return <div>{this.innerMsg}</div>;
-  //     }
-  //   }
-  //   sinon.spy(Comp.prototype, 'componentWillMount');
-
-  //   class GoodContainer extends Component {
-
-  //     constructor(props) {
-  //       super(props);
-  //       this.state.alt = false;
-  //     }
-
-  //     render(_, { alt }) {
-  //       return (
-  //         <div>
-  //           {alt ? null : (<Comp key={1} alt={alt} />)}
-  //           {alt ? null : (<Comp key={2} alt={alt} />)}
-  //           {alt ? (<Comp key={3} alt={alt} />) : null}
-  //         </div>
-  //       );
-  //     }
-  //   }
-
-  //   class BadContainer extends Component {
-
-  //     constructor(props) {
-  //       super(props);
-  //       this.state.alt = false;
-  //     }
-
-  //     render(_, { alt }) {
-  //       return (
-  //         <div>
-  //           {alt ? null : (<Comp alt={alt} />)}
-  //           {alt ? null : (<Comp alt={alt} />)}
-  //           {alt ? (<Comp alt={alt} />) : null}
-  //         </div>
-  //       );
-  //     }
-  //   }
-
-  //   let good, bad;
-  //   let root = render(<GoodContainer ref={c => good = c} />, scratch);
-  //   expect(scratch.textContent, 'new component with key present').to.equal('AB');
-  //   expect(Comp.prototype.componentWillMount).to.have.been.calledTwice;
-  //   expect(sideEffect).to.have.been.calledTwice;
-
-  //   sideEffect.resetHistory();
-  //   Comp.prototype.componentWillMount.resetHistory();
-  //   good.setState({ alt: true });
-  //   good.forceUpdate();
-  //   expect(scratch.textContent, 'new component with key present re-rendered').to.equal('C');
-  //   //we are recycling the first 2 components already rendered, just need a new one
-  //   expect(Comp.prototype.componentWillMount).to.have.been.calledOnce;
-  //   expect(sideEffect).to.have.been.calledOnce;
-
-  //   sideEffect.resetHistory();
-  //   Comp.prototype.componentWillMount.resetHistory();
-  //   render(<BadContainer ref={c => bad = c} />, scratch, root);
-  //   expect(scratch.textContent, 'new component without key').to.equal('DE');
-  //   expect(Comp.prototype.componentWillMount).to.have.been.calledTwice;
-  //   expect(sideEffect).to.have.been.calledTwice;
-
-  //   sideEffect.resetHistory();
-  //   Comp.prototype.componentWillMount.resetHistory();
-  //   bad.setState({ alt: true });
-  //   bad.forceUpdate();
-  //   expect(scratch.textContent, 'new component without key re-rendered').to.equal('D');
-  //   expect(Comp.prototype.componentWillMount).to.not.have.been.called;
-  //   expect(sideEffect).to.not.have.been.called;
-
-
-  // });
-
-
+    // sideEffect.resetHistory();
+    // Comp.prototype.componentWillMount.resetHistory();
+    // bad.setState({ alt: true });
+    // bad.forceUpdate();
+    // expect(scratch.textContent, 'new component without key re-rendered').to.equal('D');
+    // expect(Comp.prototype.componentWillMount).to.not.have.been.called;
+    // expect(sideEffect).to.not.have.been.called;
+  })
 
   // describe('props.children', () => {
   //   it('should support passing children as a prop', () => {
@@ -889,4 +835,4 @@ describe('Components', () => {
   //     expect(C3.prototype.componentWillMount, 'inject between, C3 w/ intermediary div').to.have.been.calledOnce;
   //   });
   // });
-});
+})

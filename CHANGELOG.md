@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fix
+
+* 修复 diff 算法
+* 支持 render() 返回 null
+
 ## [0.5.4](https://github.com/MuYunyun/cpreact/tree/v0.5.4) 2018-11-11
 
 ### Feat
@@ -22,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fix
 
-* 修复 diff 算法的 bug
+* 修复 diff 算法
 * 修复使用 PureComponent 依然执行不必要的渲染
 * 修复 [JSX 解析错误](https://github.com/MuYunyun/cpreact/issues/9)
 

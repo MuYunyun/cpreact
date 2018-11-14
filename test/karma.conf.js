@@ -56,7 +56,6 @@ var localLaunchers = {
 };
 
 module.exports = function (config) {
-  console.log('1234',process.env.CHROME_BIN);
   config.set({
     browsers: sauceLabs
       ? Object.keys(sauceLabsLaunchers)

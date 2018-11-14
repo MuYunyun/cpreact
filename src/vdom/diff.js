@@ -145,7 +145,7 @@ function diffChild(oldDom, newVdom) {
 
   for (let i = 0; i < newChildNodes.length; i++) {
     let child = null
-    if (keyed[newChildNodes[i].key]) {
+    if (newChildNodes[i] && keyed[newChildNodes[i].key]) {
       child = keyed[newChildNodes[i].key]
       keyed[newChildNodes[i].key] = undefined
     } else { // 对应上面不存在 key 的情形
@@ -154,6 +154,12 @@ function diffChild(oldDom, newVdom) {
         child = children[i]
         children[i] = undefined
       } else if (children[i] && !isSameNodeType(children[i], newChildNodes[i])) { // 不是相同类型，直接替代掉
+        if (newChildNodes[i] === null) {
+          children[i].replaceWith('')
+        }
+        if (newChildNodes[i] && newChildNodes[i].nodeName) { // 后期虚拟 dom 考虑用类代替工厂模式，从而进行稳妥的比较
+          children[i].replaceWith(vdomToDom(newChildNodes[i]))
+        }
         children[i].replaceWith(newChildNodes[i])
         continue
       }
@@ -173,6 +179,7 @@ function diffChild(oldDom, newVdom) {
  * @param {*} vdom
  */
 function isSameNodeType(dom, vdom) {
+  if (vdom === null) { return false }
   if ((isNumber(vdom) || isString(vdom))) { // 判断是否为文本类型
     return dom.nodeType === 3
   }
@@ -180,7 +187,7 @@ function isSameNodeType(dom, vdom) {
     return true
   }
   if (isFunction(vdom.nodeName)) { // 判断组件类型是否相同
-    return dom._component.constructor === vdom.nodeName
+    return dom._component && dom._component.constructor === vdom.nodeName
   }
   return false
 }

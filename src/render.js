@@ -6,13 +6,7 @@ import { humpToStandard, defer } from './util'
  * 将虚拟 DOM 转化为真实 DOM 后插入指定位置
  * @param {*} vdom      虚拟 DOM
  * @param {*} container 需要插入的位置
- * // {
-  //   attributes: {className: "title"}
-  //   children: ["hello", t] // t 和外层对象相同
-  //   key: undefined
-  //   nodeName: "div"        // 如果是自定义组件则变为 nodeName: ƒ A()
-  // }
- */
+*/
 function render(vdom, container) {
   const dom = vdomToDom(vdom)
   container && container.appendChild(dom) // 兼容沙盒模式
@@ -83,7 +77,7 @@ function renderComponent(component) {
   }
 
   component.base = base        // 将新得到的 dom 赋到 component 上
-  if (!isFunction(rendered.nodeName)) { // 见 [踩坑日志](https://github.com/MuYunyun/cpreact/issues/2)
+  if (!isFunction(rendered && rendered.nodeName)) { // 见 [踩坑日志](https://github.com/MuYunyun/cpreact/issues/2)
     base._component = component  // 同时将 component 赋到新得到的 dom 上
   }
 }
@@ -94,6 +88,7 @@ function renderComponent(component) {
  * @return dom
  */
 function vdomToDom(vdom) {
+  if (vdom === null) { return document.createTextNode('') }
   if (isFunction(vdom.nodeName)) { // 为了更加方便地书写生命周期逻辑，将自定义组件逻辑和一般 html 标签的逻辑分离开
     const component = createComponent(vdom)
     vdom.attributes ? setProps(component, vdom.attributes) : setProps(component)
