@@ -38,12 +38,6 @@ function setProps(component, attributes) {
   if (attributes) { // 自定义组件比较中新老组件相同时 setProps 的逻辑
     component.props = attributes
   }
-
-  if (component && component.base && component.componentWillReceiveProps) {
-    component.componentWillReceiveProps(component.props)
-  } else if (component && component.componentWillMount) {
-    component.componentWillMount()
-  }
 }
 
 /**
@@ -51,6 +45,14 @@ function setProps(component, attributes) {
  * @param {*} component
  */
 function renderComponent(component) {
+  if (!component.base && component.componentWillMount) {
+    component.componentWillMount()
+  }
+
+  if (component.base && component.componentWillReceiveProps) {
+    component.componentWillReceiveProps(component.props)
+  }
+
   if (component.base && component.shouldComponentUpdate && component.allowShouldComponentUpdate !== false) {
     const bool = component.shouldComponentUpdate(component.props, component.state)
     if (!bool && bool !== undefined) {

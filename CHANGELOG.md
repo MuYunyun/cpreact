@@ -7,9 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Feat
+
+* 加入 componentWillUnmount
+
 ### Fix
 
-* 修复 diff 算法
+* 修复生命周期 componentWillMount 调用多次
+* 修复 diff 算法多次渲染组件产生的 bug
 * 支持 render() 返回 null
 
 ## [0.5.4](https://github.com/MuYunyun/cpreact/tree/v0.5.4) 2018-11-11

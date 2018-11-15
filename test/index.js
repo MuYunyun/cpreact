@@ -10,36 +10,40 @@ import cpreact, { Component, ReactDOM } from '../src/index'
 //     )
 //   }
 // }
-let idx = 0
-let msgs = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
-class Comp extends Component {
-  componentWillMount() {
-    this.innerMsg = msgs[(idx++ % 8)]
+
+window.doRender = null
+
+class Outer extends Component {
+  state = {
+    i: 1
   }
+  componentDidMount() {
+    window.doRender = () => this.setState({ i: ++this.state.i })
+  }
+  componentWillUnmount() { }
   render() {
-    return <div>{this.innerMsg}</div>
+    const { i } = this.state
+    // if (alt) return <div is-alt />
+    return <Inner i={i} {...this.props} />
   }
 }
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state.alt = false
+let j = 0
+class Inner extends Component {
+  constructor(...args) {
+    super()
+    this._constructor(...args)
   }
-
+  _constructor() { }
+  componentWillMount() { }
+  componentDidMount() { }
+  componentWillUnmount() { }
   render() {
-    const { alt } = this.state
-    return (
-      <div>
-        {alt ? null : (<Comp key={1} alt={alt} />)}
-        {alt ? null : (<Comp key={2} alt={alt} />)}
-        {alt ? (<Comp key={3} alt={alt} />) : null}
-      </div>
-    )
+    return <div j={++j} {...this.props}>inner</div>
   }
 }
 
 ReactDOM.render(
-  <App ref={c => global.good = c} />,
+  <Outer foo="bar" />,
   document.getElementById('root')
 )

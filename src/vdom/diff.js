@@ -21,8 +21,7 @@ function diff(oldDom, newVdom) {
   }
 
   if (isFunction(newVdom.nodeName)) { // 如果是自定义组件
-    diffComponent(oldDom, newVdom)
-    return oldDom
+    return diffComponent(oldDom, newVdom)
   }
 
   if (oldDom.nodeName.toLowerCase() !== newVdom.nodeName) { // 对比非文本节点
@@ -64,14 +63,16 @@ function diffTextDom(oldDom, newVdom) {
  * @param {*} newVdom
  */
 function diffComponent(oldDom, newVdom) {
-  if (oldDom._component && (oldDom._component.constructor !== newVdom.nodeName)) { // 如果新老组件不同，则直接将新组件替换老组件
+  if (oldDom._component && (oldDom._component.constructor !== newVdom.nodeName)) { // 如果新老组件名不同，则直接用新组件替换老组件
     const newDom = vdomToDom(newVdom)
     oldDom.parentNode.insertBefore(newDom, oldDom)
-    // if () {}
+    if (oldDom._component.componentWillUnmount) { oldDom._component.componentWillUnmount() }
     oldDom.parentNode.removeChild(oldDom)
+    return newDom
   } else { // 如果组件名相同则替换 props 后
     setProps(oldDom._component, newVdom.attributes) // 将新的 attributes 值赋值给旧的
     renderComponent(oldDom._component)
+    return oldDom
   }
 }
 

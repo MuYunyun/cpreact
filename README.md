@@ -6,8 +6,8 @@
 
 ### Phisolophy
 
-* React 如酒酿, 复现 React 的轴心
-* 反哺 DOM, 不考虑兼容低版本浏览器和 IE
+* 复现 React 的轴心
+* 支持现代浏览器
 
 ### Implement React from 0 to 1
 
@@ -23,8 +23,9 @@
 * [9.onChange 事件以及受控组件](https://github.com/MuYunyun/blog/blob/master/从0到1实现React/9.onChange事件以及受控组件.md)
 
 - [ ] 性能测试
+- [ ] [沙盒](https://codesandbox.io/s/0xk1r2zmk0)中使用
 
-> [更新日志](https://github.com/MuYunyun/cpreact/blob/master/CHANGELOG.md); 相关 [issue](https://github.com/MuYunyun/blog/issues?q=is%3Aopen+is%3Aissue+label%3A%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0React%E7%B3%BB%E5%88%97)
+> [更新日志](https://github.com/MuYunyun/cpreact/blob/master/CHANGELOG.md)
 
 ### Usage
 
@@ -33,7 +34,7 @@ yarn install
 yarn start
 ```
 
-执行完上述命令后，会自动在浏览器 `localhost:8080` 上展示 `hello,cpreact`。~~也可以在 [沙盒](https://codesandbox.io/s/0xk1r2zmk0) 中使用~~
+执行完上述命令后，会自动在浏览器 `localhost:8080` 上展示 `hello,cpreact`。
 
 ![](http://oqhtscus0.bkt.clouddn.com/4b7cca0d7176545b5556b54c77200595.jpg-200)
 
@@ -45,6 +46,8 @@ yarn start
 * [性能优化实践之 —— 使用 why-did-you-update](https://github.com/demos-platform/why-did-you-update)
 
 ### Test Travel
+
+以 preact 的测试用例为干线进行 TDD, 进度如下:
 
 ```js
 yarn test
@@ -62,4 +65,4 @@ Welcome to contrubute this proj, you can read [how to pr](https://github.com/MuY
 
 ### Thanks
 
-Especially thank [simple-react](https://github.com/hujiulong/simple-react) for the guidance function of this library. At the meantime, respect for [preact](https://github.com/developit/preact) and [react](https://github.com/facebook/react)
+Especially thank [simple-react](https://github.com/hujiulong/simple-react)、[preact](https://github.com/developit/preact)、[react](https://github.com/facebook/react) for the guidance function of this library.
